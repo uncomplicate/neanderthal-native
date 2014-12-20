@@ -57,6 +57,7 @@
                         </library>
                     </libraries>
                     <linker>
+                        <name>g++</name>
                         <sysLibs>
                             <sysLib>
                                 <name>c</name>
@@ -89,9 +90,9 @@
                                     <type>jar</type>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/${project.build.finalName}-amd64-Linux-gpp-jni.nar</file>
+                                    <file>${project.build.directory}/${project.build.finalName}-${os.arch}-${os.name}-${nar.linker}-jni.nar</file>
                                     <type>jar</type>
-                                    <classifier>amd64-Linux-gpp-jni</classifier>
+                                    <classifier>${os.arch}-${os.name}-${nar.linker}-jni</classifier>
                                 </artifact>
                             </artifacts>
                         </configuration>
