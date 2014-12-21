@@ -14,7 +14,7 @@ There is a lot of documentation and tutorials at [Neanderthal Website](http://ne
 
 ## Installation & Requirements
 
-For these bindings to work, you need ATLAS on your system. Although ATLAS might be distributed as a pre-compiled binary by your system (for example, on  Ubuntu or Debian Linux you might install it through apt-get) **the only way to get full performance is to let ATLAS build script configure and install from the source**, as recommended in the official documentation. The build procedure is fullu automatic, you just have to strictly follow the [**OFFICIAL INSTALLATION GUIDE**](http://math-atlas.sourceforge.net/atlas_install/). The difference in performance might even be an order of magnitude.
+For these bindings to work, you need ATLAS on your system. Although ATLAS might be distributed as a pre-compiled binary by your system (for example, on  Ubuntu or Debian Linux you might install it through apt-get) **the only way to get full performance is to let ATLAS build script configure itself for your machine and install from the source**, as recommended in the official documentation. The build procedure is automatic, you just have to strictly follow the [**OFFICIAL INSTALLATION GUIDE**](http://math-atlas.sourceforge.net/atlas_install/). The difference in performance might even be an order of magnitude.
 
 Add the following dependencies to your `project.clj` file:
 
