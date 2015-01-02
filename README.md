@@ -46,7 +46,7 @@ See the documentation of Clojure-s [Neanderthal library](http://neanderthal.unco
 ## Project Maturity
 
 BLAS and ATLAS have a decades-long history, so Neanderthal ATLAS bindings should be stable.
-However, the Neanderthal library is still in development, so I expect to add additional bindings and change some bugs.
+However, the Neanderthal library is still in development, so I expect to add additional bindings, fix bugs, etc.
 While the project is in the 0.X.Y version it is considered in development, so the priority is adding new features and enhancing the existing code as much as possible, rather than backward compatibility.
 Once it reaches version 1.0.0 it will be considered stable, and more consideration will be directed towards supporting backward compatibility.
 
