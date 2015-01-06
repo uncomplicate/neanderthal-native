@@ -5,7 +5,7 @@
     <groupId>uncomplicate</groupId>
     <artifactId>neanderthal-atlas</artifactId>
     <version>0.1.0-SNAPSHOT</version>
-    <packaging>nar</packaging>
+    <packaging>jar</packaging>
 
     <name>Neanderthal JNI ATLAS Bindings</name>
     <description>JNI Bindings for ATLAS BLAS and LAPACK library. Neanderthal needs
@@ -100,77 +100,7 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>com.github.maven-nar</groupId>
-                <artifactId>nar-maven-plugin</artifactId>
-                <version>3.2.0</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <cpp>
-                        <exceptions>false</exceptions>
-                    </cpp>
-                    <libraries>
-                        <library>
-                            <type>jni</type>
-                            <narSystemPackage>uncomplicate.neanderthal</narSystemPackage>
-                            <linkCPP>false</linkCPP>
-                        </library>
-                    </libraries>
-                    <linker>
-                        <name>g++</name>
-                        <sysLibs>
-                            <sysLib>
-                                <name>c</name>
-                            </sysLib>
-                            <sysLib>
-                                <name>cblas</name>
-                            </sysLib>
-                            <sysLib>
-                                <name>atlas</name>
-                            </sysLib>
-                        </sysLibs>
-                    </linker>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.7</version>
-                <executions>
-                    <execution>
-                        <id>copy</id>
-                        <phase>verify</phase>
-                        <configuration>
-                            <target name="copy and rename file">
-                                <copy file="${project.build.directory}/${project.build.finalName}.jar"
-                                      tofile="${project.build.directory}/${project.build.finalName}.nar" />
-                                <copy file="${project.build.directory}/${project.build.finalName}-${os.arch}-${os.name}-gpp-jni.nar"
-                                      tofile="${project.build.directory}/${project.build.finalName}-${os.arch}-${os.name}-gpp-jni.jar"/>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.5</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
