@@ -54,4 +54,4 @@ Once it reaches version 1.0.0 it will be considered stable, and more considerati
 
 Copyright © 2015 Dragan Djuric
 
-Distributed under the Eclipse Public License, the same as Clojure
+Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.

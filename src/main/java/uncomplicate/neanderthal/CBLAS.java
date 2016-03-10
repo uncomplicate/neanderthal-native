@@ -147,12 +147,12 @@ public class CBLAS {
      */
 
     public static native void sswap(int N,
-                                    Buffer X, int incX,
-                                    Buffer Y, int incY);
+                                    Buffer X, int offsetX, int incX,
+                                    Buffer Y, int offsetY, int incY);
 
     public static native void dswap(int N,
-                                    Buffer X, int incX,
-                                    Buffer Y, int incY);
+                                    Buffer X, int offsetX, int incX,
+                                    Buffer Y, int offsetY, int incY);
 
     /*
      * ------------------------------------------------------
@@ -173,12 +173,12 @@ public class CBLAS {
      */
 
     public static native void scopy(int N,
-                                    Buffer X, int incX,
-                                    Buffer Y, int incY);
+                                    Buffer X, int offsetX, int incX,
+                                    Buffer Y, int offsetY, int incY);
 
     public static native void dcopy(int N,
-                                    Buffer X, int incX,
-                                    Buffer Y, int incY);
+                                    Buffer X, int offsetX, int incX,
+                                    Buffer Y, int offsetY, int incY);
 
     /*
      * ------------------------------------------------------
