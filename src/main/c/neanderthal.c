@@ -130,6 +130,130 @@ JNIEXPORT jdouble JNICALL Java_uncomplicate_neanderthal_CBLAS_dasum
   return cblas_dasum(N, cX, incX);
 };
 
+
+/*
+ * ------------------------------------------------------
+ * BLAS PLUS: SUM
+ * ------------------------------------------------------
+ */
+
+JNIEXPORT jfloat JNICALL Java_uncomplicate_neanderthal_CBLAS_ssum
+(JNIEnv *env, jclass clazz, jint N, jobject X, jint incX) {
+
+    float *cX = (float *) (*env)->GetDirectBufferAddress(env, X);
+
+    const int stride = incX;
+    const int step = 16;
+    const int tail = N % step;
+    const int n = N - tail;
+
+    float *end = cX + n * incX;
+
+    float acc = 0.0f;
+    float acc0 = 0.0f;
+    float acc1 = 0.0f;
+    float acc2 = 0.0f;
+    float acc3 = 0.0f;
+    float acc4 = 0.0f;
+    float acc5 = 0.0f;
+    float acc6 = 0.0f;
+    float acc7 = 0.0f;
+    float acc8 = 0.0f;
+    float acc9 = 0.0f;
+    float acc10 = 0.0f;
+    float acc11 = 0.0f;
+    float acc12 = 0.0f;
+    float acc13 = 0.0f;
+    float acc14 = 0.0f;
+    float acc15 = 0.0f;
+
+    while (cX != end) {
+        acc0 += cX[0];
+        acc1 += cX[1];
+        acc2 += cX[2];
+        acc3 += cX[3];
+        acc4 += cX[4];
+        acc5 += cX[5];
+        acc6 += cX[6];
+        acc7 += cX[7];
+        acc8 += cX[8];
+        acc9 += cX[9];
+        acc10 += cX[10];
+        acc11 += cX[11];
+        acc12 += cX[12];
+        acc13 += cX[13];
+        acc14 += cX[14];
+        acc15 += cX[15];
+        cX += 16 * stride;
+    }
+
+    for (int i = 0; i < tail; i++) {
+        acc += end[i * stride];
+    }
+
+    return acc + acc0 + acc1 + acc2 + acc3 + acc4 + acc5 + acc6 + acc7
+        + acc8 + acc9 + acc10 + acc11 + acc12 + acc13 + acc14 + acc15;
+};
+
+JNIEXPORT jdouble JNICALL Java_uncomplicate_neanderthal_CBLAS_dsum
+(JNIEnv *env, jclass clazz, jint N, jobject X, jint incX) {
+
+    double *cX = (double *) (*env)->GetDirectBufferAddress(env, X);
+
+    const int stride = incX;
+    const int step = 16;
+    const int tail = N % step;
+    const int n = N - tail;
+
+    double *end = cX + n * incX;
+
+    double acc = 0.0f;
+    double acc0 = 0.0f;
+    double acc1 = 0.0f;
+    double acc2 = 0.0f;
+    double acc3 = 0.0f;
+    double acc4 = 0.0f;
+    double acc5 = 0.0f;
+    double acc6 = 0.0f;
+    double acc7 = 0.0f;
+    double acc8 = 0.0f;
+    double acc9 = 0.0f;
+    double acc10 = 0.0f;
+    double acc11 = 0.0f;
+    double acc12 = 0.0f;
+    double acc13 = 0.0f;
+    double acc14 = 0.0f;
+    double acc15 = 0.0f;
+
+    while (cX != end) {
+        acc0 += cX[0];
+        acc1 += cX[1];
+        acc2 += cX[2];
+        acc3 += cX[3];
+        acc4 += cX[4];
+        acc5 += cX[5];
+        acc6 += cX[6];
+        acc7 += cX[7];
+        acc8 += cX[8];
+        acc9 += cX[9];
+        acc10 += cX[10];
+        acc11 += cX[11];
+        acc12 += cX[12];
+        acc13 += cX[13];
+        acc14 += cX[14];
+        acc15 += cX[15];
+        cX += 16 * stride;
+    }
+
+    for (int i = 0; i < tail; i++) {
+        acc += end[i * stride];
+    }
+
+    return acc + acc0 + acc1 + acc2 + acc3 + acc4 + acc5 + acc6 + acc7
+        + acc8 + acc9 + acc10 + acc11 + acc12 + acc13 + acc14 + acc15;
+};
+
+
 /*
  * ------------------------------------------------------
  * IAMAX

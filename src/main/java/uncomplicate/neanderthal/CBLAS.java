@@ -648,4 +648,15 @@ public class CBLAS {
                                     Buffer A, int lda,
                                     Buffer B, int ldb);
 
+
+    /*
+     * ------------------------------------------------------
+     * SUM
+     * ------------------------------------------------------
+     */
+
+    public static native float ssum(int N, Buffer X, int incX);
+
+    public static native double dsum(int N, Buffer X, int incX);
+
 }

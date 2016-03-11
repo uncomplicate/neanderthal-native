@@ -85,6 +85,7 @@
                 <configuration>
                     <cpp>
                         <exceptions>false</exceptions>
+                        <optimize>full</optimize>
                     </cpp>
                     <libraries>
                         <library>
@@ -95,6 +96,9 @@
                     </libraries>
                     <linker>
                         <name>g++</name>
+                        <options>
+                            <option>-ffast-math</option>
+                        </options>
                         <sysLibs>
                             <sysLib>
                                 <name>c</name>
