@@ -105,9 +105,6 @@
                                 <type>static</type>
                             </sysLib>
                             <sysLib>
-                                <name>cblas</name>
-                            </sysLib>
-                            <sysLib>
                                 <name>atlas</name>
                             </sysLib>
                         </sysLibs>
