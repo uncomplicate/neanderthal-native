@@ -64,9 +64,94 @@
         <skipTests>true</skipTests>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>Linux</id>
+            <activation>
+                <os>
+                    <name>Linux</name>
+                </os>
+            </activation>
+            <properties>
+                <jar-os-name>Linux</jar-os-name>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.maven-nar</groupId>
+                        <artifactId>nar-maven-plugin</artifactId>
+                        <configuration>
+                            <linker>
+                                <sysLibs>
+                                    <sysLib>
+                                        <name>atlas</name>
+                                    </sysLib>
+                                </sysLibs>
+                            </linker>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>Mac OS X</id>
+            <activation>
+                <os>
+                    <name>Mac OS X</name>
+                </os>
+            </activation>
+            <properties>
+                <jar-os-name>MacOSX</jar-os-name>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.maven-nar</groupId>
+                        <artifactId>nar-maven-plugin</artifactId>
+                        <configuration>
+                            <linker>
+                                <options>
+                                    <option>-framework</option>
+                                    <option>Accelerate</option>
+                                </options>
+                            </linker>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>Windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <jar-os-name>Windows</jar-os-name>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.maven-nar</groupId>
+                        <artifactId>nar-maven-plugin</artifactId>
+                        <configuration>
+                            <linker>
+                                <sysLibs>
+                                    <sysLib>
+                                        <name>atlas</name>
+                                    </sysLib>
+                                </sysLibs>
+                            </linker>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -76,7 +161,6 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>com.github.maven-nar</groupId>
                 <artifactId>nar-maven-plugin</artifactId>
@@ -104,14 +188,10 @@
                                 <name>c</name>
                                 <type>static</type>
                             </sysLib>
-                            <sysLib>
-                                <name>atlas</name>
-                            </sysLib>
                         </sysLibs>
                     </linker>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
@@ -124,8 +204,8 @@
                             <target name="copy and rename file">
                                 <copy file="${project.build.directory}/${project.build.finalName}.jar"
                                       tofile="${project.build.directory}/${project.build.finalName}.nar" />
-                                <copy file="${project.build.directory}/${project.build.finalName}-${os.arch}-${os.name}-gpp-jni.nar"
-                                      tofile="${project.build.directory}/${project.build.finalName}-${os.arch}-${os.name}-gpp-jni.jar"/>
+                                <copy file="${project.build.directory}/${project.build.finalName}-${os.arch}-${jar-os-name}-gpp-jni.nar"
+                                      tofile="${project.build.directory}/${project.build.finalName}-${os.arch}-${jar-os-name}-gpp-jni.jar"/>
                             </target>
                         </configuration>
                         <goals>
