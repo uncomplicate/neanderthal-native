@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>uncomplicate</groupId>
+  <artifactId>neanderthal-native</artifactId>
+  <name>Neanderthal JNI ATLAS Bindings</name>
+  <version>0.5.0-SNAPSHOT</version>
+  <description>Uberjar of JNI Bindings for ATLAS BLAS and LAPACK library.</description>
+  <url>https://github.com/uncomplicate/neanderthal-atlas</url>
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://github.com/uncomplicate/neanderthal-atlas/issues</url>
+  </issueManagement>
+  <developers>
+    <developer>
+      <id>blueberry</id>
+      <name>Dragan Djuric</name>
+      <email>dragandj@gmail.com</email>
+      <url>https://github.com/blueberry</url>
+    </developer>
+  </developers>
+  <licenses>
+    <license>
+      <name>Eclipse Public License</name>
+      <url>http://www.eclipse.org/legal/epl-v10.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>https://github.com/uncomplicate/neanderthal-atlas</url>
+  </scm>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>2.4.3</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration />
+      </plugin>
+      <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.8.2</version>
+      </plugin>
+    </plugins>
+  </build>
+  <distributionManagement>
+    <repository>
+      <id>clojars</id>
+      <name>Clojars repository</name>
+      <url>https://clojars.org/repo</url>
+    </repository>
+  </distributionManagement>
+  <properties>
+    <skipTests>true</skipTests>
+    <neanderthal-atlas-version>0.2.1-SNAPSHOT</neanderthal-atlas-version>
+  </properties>
+</project>
+

@@ -4,7 +4,7 @@
 
     <groupId>uncomplicate</groupId>
     <artifactId>neanderthal-atlas</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Neanderthal JNI ATLAS Bindings</name>
@@ -22,6 +22,7 @@
 	<license>
 	    <name>Eclipse Public License</name>
 	    <url>http://www.eclipse.org/legal/epl-v10.html</url>
+            <distribution>repo</distribution>
 	</license>
     </licenses>
 
@@ -64,92 +65,6 @@
         <skipTests>true</skipTests>
     </properties>
 
-    <profiles>
-        <profile>
-            <id>Linux</id>
-            <activation>
-                <os>
-                    <name>Linux</name>
-                </os>
-            </activation>
-            <properties>
-                <jar-os-name>Linux</jar-os-name>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.maven-nar</groupId>
-                        <artifactId>nar-maven-plugin</artifactId>
-                        <configuration>
-                            <linker>
-                                <sysLibs>
-                                    <sysLib>
-                                        <name>atlas</name>
-                                    </sysLib>
-                                </sysLibs>
-                            </linker>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>Mac OS X</id>
-            <activation>
-                <os>
-                    <name>Mac OS X</name>
-                </os>
-            </activation>
-            <properties>
-                <jar-os-name>MacOSX</jar-os-name>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.maven-nar</groupId>
-                        <artifactId>nar-maven-plugin</artifactId>
-                        <configuration>
-                            <linker>
-                                <options>
-                                    <option>-framework</option>
-                                    <option>Accelerate</option>
-                                </options>
-                            </linker>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>Windows</id>
-            <activation>
-                <os>
-                    <family>windows</family>
-                </os>
-            </activation>
-            <properties>
-                <jar-os-name>Windows</jar-os-name>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.maven-nar</groupId>
-                        <artifactId>nar-maven-plugin</artifactId>
-                        <configuration>
-                            <linker>
-                                <sysLibs>
-                                    <sysLib>
-                                        <name>atlas</name>
-                                    </sysLib>
-                                </sysLibs>
-                            </linker>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
     <build>
         <plugins>
 
@@ -170,6 +85,22 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <version>1.10</version>
@@ -187,15 +118,11 @@
                                     <type>jar</type>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/${project.build.finalName}-${os.arch}-${jar-os-name}-gpp-jni.nar</file>
+                                    <file>${project.build.directory}/${project.build.finalName}-${os.arch}-Linux-gpp-jni.nar</file>
                                     <type>jar</type>
                                     <classifier>${os.arch}-Linux-gpp-jni</classifier>
                                 </artifact>
-                                <artifact>
-                                    <file>${project.build.directory}/${project.build.finalName}-${os.arch}-MacOSX-gpp-jni.nar</file>
-                                    <type>jar</type>
-                                    <classifier>${os.arch}-MacOSX-gpp-jni</classifier>
-                                </artifact>
+
                             </artifacts>
                         </configuration>
                     </execution>
