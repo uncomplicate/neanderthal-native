@@ -4,7 +4,7 @@
 
     <groupId>uncomplicate</groupId>
     <artifactId>neanderthal-atlas</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
     <packaging>jar</packaging>
 
     <name>Neanderthal JNI ATLAS Bindings</name>
@@ -56,13 +56,99 @@
         <dependency>
             <groupId>org.scijava</groupId>
             <artifactId>native-lib-loader</artifactId>
-            <version>2.0.2</version>
+            <version>2.1.3</version>
         </dependency>
     </dependencies>
 
     <properties>
         <skipTests>true</skipTests>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>Linux</id>
+            <activation>
+                <os>
+                    <name>Linux</name>
+                </os>
+            </activation>
+            <properties>
+                <jar-os-name>Linux</jar-os-name>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.maven-nar</groupId>
+                        <artifactId>nar-maven-plugin</artifactId>
+                        <configuration>
+                            <linker>
+                                <sysLibs>
+                                    <sysLib>
+                                        <name>atlas</name>
+                                    </sysLib>
+                                </sysLibs>
+                            </linker>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>Mac OS X</id>
+            <activation>
+                <os>
+                    <name>Mac OS X</name>
+                </os>
+            </activation>
+            <properties>
+                <jar-os-name>MacOSX</jar-os-name>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.maven-nar</groupId>
+                        <artifactId>nar-maven-plugin</artifactId>
+                        <configuration>
+                            <linker>
+                                <options>
+                                    <option>-framework</option>
+                                    <option>Accelerate</option>
+                                </options>
+                            </linker>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>Windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <jar-os-name>Windows</jar-os-name>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.maven-nar</groupId>
+                        <artifactId>nar-maven-plugin</artifactId>
+                        <configuration>
+                            <linker>
+                                <sysLibs>
+                                    <sysLib>
+                                        <name>atlas</name>
+                                    </sysLib>
+                                </sysLibs>
+                            </linker>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
@@ -72,11 +158,10 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.2</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
-
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -87,7 +172,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.9.1</version>
+                <version>1.10</version>
                 <executions>
                     <execution>
                         <id>attach-jars</id>
@@ -102,9 +187,9 @@
                                     <type>jar</type>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/${project.build.finalName}-${os.arch}-${os.name}-gpp-jni.nar</file>
+                                    <file>${project.build.directory}/${project.build.finalName}-${os.arch}-${jar-os-name}-gpp-jni.nar</file>
                                     <type>jar</type>
-                                    <classifier>${os.arch}-${os.name}-gpp-jni</classifier>
+                                    <classifier>${os.arch}-Linux-gpp-jni</classifier>
                                 </artifact>
                                 <artifact>
                                     <file>${project.build.directory}/${project.build.finalName}-${os.arch}-MacOSX-gpp-jni.nar</file>
@@ -117,6 +202,7 @@
                 </executions>
             </plugin>
         </plugins>
+
     </build>
 
 </project>

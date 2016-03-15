@@ -4,7 +4,7 @@
 
     <groupId>uncomplicate</groupId>
     <artifactId>neanderthal-atlas</artifactId>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.2.0</version>
     <packaging>nar</packaging>
 
     <name>Neanderthal JNI ATLAS Bindings</name>
@@ -254,9 +254,9 @@
                                     <type>jar</type>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/${project.build.finalName}-${os.arch}-${os.name}-gpp-jni.nar</file>
+                                    <file>${project.build.directory}/${project.build.finalName}-${os.arch}-${jar-os-name}-gpp-jni.nar</file>
                                     <type>jar</type>
-                                    <classifier>${os.arch}-${os.name}-gpp-jni</classifier>
+                                    <classifier>${os.arch}-${jar-os-name}-gpp-jni</classifier>
                                 </artifact>
                             </artifacts>
                         </configuration>
