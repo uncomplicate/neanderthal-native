@@ -16,29 +16,6 @@ There is a lot of documentation and tutorials at [Neanderthal Website](http://ne
 
 For these bindings to work, you need ATLAS on your system. Although ATLAS might be distributed as a pre-compiled binary by your system (for example, on  Ubuntu or Debian Linux you might install it through apt-get) **the only way to get full performance is to let ATLAS build script configure itself for your machine and install from the source**, as recommended in the official documentation. The build procedure is automatic, you just have to strictly follow the [**OFFICIAL INSTALLATION GUIDE**](http://math-atlas.sourceforge.net/atlas_install/). The difference in performance might even be an order of magnitude.
 
-Add the following dependencies to your `project.clj` file:
-
-```clojure
-[uncomplicate/neanderthal-atlas "0.1.0"] ;; Java (JNI) part
-[uncomplicate/neanderthal-atlas "0.1.0" :classifier "amd64-Linux-gpp-jni"] ;; native part, depends on your operating system.
-```
-
-Fluokitten artifacts are distributed through Clojars, so they will be downloaded by leiningen by default. If you are using other tools for dependency management, you can download Fluokitten from Clojars.org, or build it from the source by running `lein jar`.
-
-## Usage
-
-Import `uncomplicate.neanderthal.CBLAS` and call the appropriate BLAS procedures.
-
-Usually, you would not use it directly, but through a higher-level library such as [Neanderthal](http://neanderthal.uncomplicate.org).
-
-## [Get Involved](http://neanderthal.uncomplicate.org/articles/community.html)
-
-I welcome anyone who is willing to contribute, no mather the level of experience. Here are some ways in which you can help:
-* If you are a native English speaker, i would really appreciate if you can help with correcting the English on the Neanderthal site and in the documentation.
-* Contribute articles and tutorials.
-* Do code review of the Neanderthal code and suggest improvements.
-* If you find bugs, report them via [Neanderthal ATLAS issue tracker](https://github.com/uncomplicate/neanderthal-atlas/issues).
-
 ## Documentation & Examples
 
 See the documentation of Clojure-s [Neanderthal library](http://neanderthal.uncomplicate.org)

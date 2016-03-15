@@ -4,7 +4,7 @@
 
     <groupId>uncomplicate</groupId>
     <artifactId>neanderthal-native</artifactId>
-    <version>0.5.0-SNAPSHOT</version>
+    <version>0.5.0</version>
     <packaging>jar</packaging>
 
     <name>Neanderthal JNI ATLAS Bindings</name>
@@ -58,6 +58,12 @@
             <version>${neanderthal-atlas-version}</version>
             <classifier>amd64-Linux-gpp-jni</classifier>
         </dependency>
+        <dependency>
+            <groupId>uncomplicate</groupId>
+            <artifactId>neanderthal-atlas</artifactId>
+            <version>${neanderthal-atlas-version}</version>
+            <classifier>x86_64-MacOSX-gpp-jni</classifier>
+        </dependency>
     </dependencies>
 
     <properties>
@@ -76,6 +82,21 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+
+             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>

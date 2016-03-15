@@ -1,1 +1,0 @@
- mvn org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy-file -Durl=https://clojars.org/repo/ -DrepositoryId=clojars -Dfile=target/neanderthal-atlas-0.2.0.jar -DpomFile=pom-dep.xml -Dfiles=target/neanderthal-atlas-0.2.0-amd64-Linux-gpp-jni.jar,target/neanderthal-atlas-0.2.0T-x86_64-MacOSX-gpp-jni.jar -Dclassifiers=amd64-Linux-gpp-jni,x86_64-MacOSX-gpp-jni -Dtypes=jar,jar

@@ -4,7 +4,7 @@
   <groupId>uncomplicate</groupId>
   <artifactId>neanderthal-native</artifactId>
   <name>Neanderthal JNI ATLAS Bindings</name>
-  <version>0.5.0-SNAPSHOT</version>
+  <version>0.5.0</version>
   <description>Uberjar of JNI Bindings for ATLAS BLAS and LAPACK library.</description>
   <url>https://github.com/uncomplicate/neanderthal-atlas</url>
   <issueManagement>
@@ -38,6 +38,19 @@
           <source>1.8</source>
           <target>1.8</target>
         </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
