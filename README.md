@@ -1,5 +1,4 @@
 # [Neanderthal ATLAS](http://neanderthal.uncomplicate.org) - Low-level Java (JNI) bindings for [ATLAS](httl://http://math-atlas.sourceforge.net/) BLAS and LAPACK.
-[![Build Status](https://secure.travis-ci.org/uncomplicate/fluokitten.png)](https://travis-ci.org/uncomplicate/neanderthal-atlas)
 
 Neanderthal ATLAS is a low-level Java library for calling native BLAS and LAPACK procedures provided by ATLAS library. Used by Clojure Neanderthal matrix and linear algebra library.
 
@@ -29,6 +28,6 @@ Once it reaches version 1.0.0 it will be considered stable, and more considerati
 
 ## License
 
-Copyright © 2015 Dragan Djuric
+Copyright © 2014-2016 Dragan Djuric
 
 Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.

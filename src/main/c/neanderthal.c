@@ -169,21 +169,21 @@ JNIEXPORT jfloat JNICALL Java_uncomplicate_neanderthal_CBLAS_ssum
 
     while (cX != end) {
         acc0 += cX[0];
-        acc1 += cX[1];
-        acc2 += cX[2];
-        acc3 += cX[3];
-        acc4 += cX[4];
-        acc5 += cX[5];
-        acc6 += cX[6];
-        acc7 += cX[7];
-        acc8 += cX[8];
-        acc9 += cX[9];
-        acc10 += cX[10];
-        acc11 += cX[11];
-        acc12 += cX[12];
-        acc13 += cX[13];
-        acc14 += cX[14];
-        acc15 += cX[15];
+        acc1 += cX[stride];
+        acc2 += cX[2*stride];
+        acc3 += cX[3*stride];
+        acc4 += cX[4*stride];
+        acc5 += cX[5*stride];
+        acc6 += cX[6*stride];
+        acc7 += cX[7*stride];
+        acc8 += cX[8*stride];
+        acc9 += cX[9*stride];
+        acc10 += cX[10*stride];
+        acc11 += cX[11*stride];
+        acc12 += cX[12*stride];
+        acc13 += cX[13*stride];
+        acc14 += cX[14*stride];
+        acc15 += cX[15*stride];
         cX += 16 * stride;
     }
 
@@ -227,21 +227,21 @@ JNIEXPORT jdouble JNICALL Java_uncomplicate_neanderthal_CBLAS_dsum
 
     while (cX != end) {
         acc0 += cX[0];
-        acc1 += cX[1];
-        acc2 += cX[2];
-        acc3 += cX[3];
-        acc4 += cX[4];
-        acc5 += cX[5];
-        acc6 += cX[6];
-        acc7 += cX[7];
-        acc8 += cX[8];
-        acc9 += cX[9];
-        acc10 += cX[10];
-        acc11 += cX[11];
-        acc12 += cX[12];
-        acc13 += cX[13];
-        acc14 += cX[14];
-        acc15 += cX[15];
+        acc1 += cX[stride];
+        acc2 += cX[2*stride];
+        acc3 += cX[3*stride];
+        acc4 += cX[4*stride];
+        acc5 += cX[5*stride];
+        acc6 += cX[6*stride];
+        acc7 += cX[7*stride];
+        acc8 += cX[8*stride];
+        acc9 += cX[9*stride];
+        acc10 += cX[10*stride];
+        acc11 += cX[11*stride];
+        acc12 += cX[12*stride];
+        acc13 += cX[13*stride];
+        acc14 += cX[14*stride];
+        acc15 += cX[15*stride];
         cX += 16 * stride;
     }
 
