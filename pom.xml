@@ -136,9 +136,18 @@
                     <plugin>
                         <groupId>com.github.maven-nar</groupId>
                         <artifactId>nar-maven-plugin</artifactId>
+                        <version>3.2.3</version>
                         <configuration>
+                            <c>
+                                <options>
+                                    <option>-D__int64=int64_t</option>
+                                </options>
+                            </c>
                             <linker>
                                 <sysLibs>
+                                    <sysLib>
+                                        <name>cblas</name>
+                                    </sysLib>
                                     <sysLib>
                                         <name>atlas</name>
                                     </sysLib>
@@ -165,7 +174,7 @@
             <plugin>
                 <groupId>com.github.maven-nar</groupId>
                 <artifactId>nar-maven-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.4.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <cpp>

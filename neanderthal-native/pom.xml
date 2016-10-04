@@ -11,7 +11,7 @@
     <description>Uberjar of JNI Bindings for ATLAS BLAS and LAPACK library.
     </description>
     <url>https://github.com/uncomplicate/neanderthal-atlas</url>
-o
+
     <issueManagement>
 	<url>https://github.com/uncomplicate/neanderthal-native/issues</url>
 	<system>GitHub Issues</system>
@@ -64,6 +64,12 @@ o
             <version>${neanderthal-atlas-version}</version>
             <classifier>x86_64-MacOSX-gpp-jni</classifier>
         </dependency>
+        <dependency>
+            <groupId>uncomplicate</groupId>
+            <artifactId>neanderthal-atlas</artifactId>
+            <version>${neanderthal-atlas-version}</version>
+            <classifier>amd64-Windows-gpp-jni</classifier>
+        </dependency>
     </dependencies>
 
     <properties>
@@ -115,14 +121,11 @@ o
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>2.8.2</version>
             </plugin>
-
-
         </plugins>
     </build>
 
