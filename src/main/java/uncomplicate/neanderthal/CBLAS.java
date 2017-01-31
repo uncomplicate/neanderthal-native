@@ -103,12 +103,12 @@ public class CBLAS {
     public static native void srot(int N,
                                    Buffer X, int offsetX, int incX,
                                    Buffer Y, int offsetY, int incY,
-                                   Buffer cs, int offset_cs, int inc_cs);
+                                   float c, float s);
 
     public static native void drot(int N,
                                    Buffer X, int offsetX, int incX,
                                    Buffer Y, int offsetY, int incY,
-                                   Buffer cs, int offset_cs, int inc_cs);
+                                   double c, double s);
 
     /*
      * ------------------------------------------------------
