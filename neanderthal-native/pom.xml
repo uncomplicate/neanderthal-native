@@ -2,9 +2,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <properties>
+        <neanderthal-atlas-version>0.4.0-SNAPSHOT</neanderthal-atlas-version>
+        <skipTests>true</skipTests>
+    </properties>
+
     <groupId>uncomplicate</groupId>
     <artifactId>neanderthal-native</artifactId>
-    <version>0.8.0</version>
+    <version>0.9.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Neanderthal JNI ATLAS Bindings</name>
@@ -58,7 +63,7 @@
             <version>${neanderthal-atlas-version}</version>
             <classifier>amd64-Linux-gpp-jni</classifier>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>uncomplicate</groupId>
             <artifactId>neanderthal-atlas</artifactId>
             <version>${neanderthal-atlas-version}</version>
@@ -69,13 +74,8 @@
             <artifactId>neanderthal-atlas</artifactId>
             <version>${neanderthal-atlas-version}</version>
             <classifier>amd64-Windows-gpp-jni</classifier>
-        </dependency>
+        </dependency>-->
     </dependencies>
-
-    <properties>
-        <neanderthal-atlas-version>0.3.1</neanderthal-atlas-version>
-        <skipTests>true</skipTests>
-    </properties>
 
     <build>
         <plugins>

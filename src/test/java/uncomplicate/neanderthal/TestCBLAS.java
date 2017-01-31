@@ -24,7 +24,7 @@ public class TestCBLAS {
         x.putDouble(16, 3.0);
         x.position(0);
         NarSystem.loadLibrary();
-        assertEquals(14.0, CBLAS.ddot(3, x, 1, x, 1), 0.0);
+        assertEquals(14.0, CBLAS.ddot(3, x, 0, 1, x, 0, 1), 0.0);
     }
 
 }

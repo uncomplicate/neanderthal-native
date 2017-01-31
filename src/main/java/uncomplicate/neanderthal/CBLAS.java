@@ -43,20 +43,20 @@ public class CBLAS {
      */
 
     public static native float sdsdot(int N, float alpha,
-                                      Buffer X, int incX,
-                                      Buffer Y, int incY);
+                                      Buffer X, int offsetX, int incX,
+                                      Buffer Y, int offsetY, int incY);
 
     public static native double dsdot(int N,
-                                      Buffer X, int incX,
-                                      Buffer Y, int incY);
+                                      Buffer X, int offsetX, int incX,
+                                      Buffer Y, int offsetY, int incY);
 
     public static native double ddot(int N,
-                                    Buffer X, int incX,
-                                    Buffer Y, int incY);
+                                     Buffer X, int offsetX, int incX,
+                                     Buffer Y, int offsetY, int incY);
 
     public static native float sdot(int N,
-                                    Buffer X, int incX,
-                                    Buffer Y, int incY);
+                                    Buffer X, int offsetX, int incX,
+                                    Buffer Y, int offsetY, int incY);
 
     /*
      * ------------------------------------------------------
@@ -64,9 +64,9 @@ public class CBLAS {
      * ------------------------------------------------------
      */
 
-    public static native float snrm2(int N, Buffer X, int incX);
+    public static native float snrm2(int N, Buffer X, int offsetX, int incX);
 
-    public static native double dnrm2(int N, Buffer X, int incX);
+    public static native double dnrm2(int N, Buffer X, int offsetX, int incX);
 
     /*
      * ------------------------------------------------------
@@ -74,9 +74,9 @@ public class CBLAS {
      * ------------------------------------------------------
      */
 
-    public static native float sasum(int N, Buffer X, int incX);
+    public static native float sasum(int N, Buffer X, int offsetX, int incX);
 
-    public static native double dasum(int N, Buffer X, int incX);
+    public static native double dasum(int N, Buffer X, int offsetX, int incX);
 
     /*
      * ------------------------------------------------------
@@ -84,9 +84,9 @@ public class CBLAS {
      * ------------------------------------------------------
      */
 
-    public static native int isamax(int N, Buffer X, int incX);
+    public static native int isamax(int N, Buffer X, int offsetX, int incX);
 
-    public static native int idamax(int N, Buffer X, int incX);
+    public static native int idamax(int N, Buffer X, int offsetX, int incX);
 
     /*
      * ======================================================
@@ -101,14 +101,14 @@ public class CBLAS {
      */
 
     public static native void srot(int N,
-                                   Buffer X, int incX,
-                                   Buffer Y, int incY,
-                                   float c, float s);
+                                   Buffer X, int offsetX, int incX,
+                                   Buffer Y, int offsetY, int incY,
+                                   Buffer cs, int offset_cs, int inc_cs);
 
     public static native void drot(int N,
-                                   Buffer X, int incX,
-                                   Buffer Y, int incY,
-                                   double c, double s);
+                                   Buffer X, int offsetX, int incX,
+                                   Buffer Y, int offsetY, int incY,
+                                   Buffer cs, int offset_cs, int inc_cs);
 
     /*
      * ------------------------------------------------------
@@ -116,21 +116,11 @@ public class CBLAS {
      * ------------------------------------------------------
      */
 
-    public static native void srotg(Buffer args);
+    public static native void srotg(Buffer ab, int offset_ab, int inc_ab,
+                                    Buffer cs, int offset_cs, int inc_cs);
 
-    public static native void drotg(Buffer args);
-
-    /*
-     * ------------------------------------------------------
-     * ROTMG
-     * ------------------------------------------------------
-     */
-
-    public static native void srotmg(Buffer args,
-                                     Buffer P);
-
-    public static native void drotmg(Buffer args,
-                                     Buffer P);
+    public static native void drotg(Buffer ab, int offset_ab, int inc_ab,
+                                    Buffer cs, int offset_cs, int inc_cs);
 
     /*
      * ------------------------------------------------------
@@ -139,14 +129,26 @@ public class CBLAS {
      */
 
     public static native void srotm(int N,
-                                    Buffer X, int incX,
-                                    Buffer Y, int incY,
-                                    Buffer P);
+                                    Buffer X, int offsetX, int incX,
+                                    Buffer Y, int offsetY, int incY,
+                                    Buffer param);
 
     public static native void drotm(int N,
-                                    Buffer X, int incX,
-                                    Buffer Y, int incY,
-                                    Buffer P);
+                                    Buffer X, int offsetX, int incX,
+                                    Buffer Y, int offsetY, int incY,
+                                    Buffer param);
+
+    /*
+     * ------------------------------------------------------
+     * ROTMG
+     * ------------------------------------------------------
+     */
+
+    public static native void srotmg(Buffer d1d2xy, int offset_d1d2xy, int inc_d1d2xy,
+                                     Buffer param);
+
+    public static native void drotmg(Buffer d1d2xy, int offset_d1d2xy, int inc_d1d2xy,
+                                     Buffer param);
 
     /*
      * ------------------------------------------------------
@@ -169,10 +171,10 @@ public class CBLAS {
      */
 
     public static native void sscal(int N, float alpha,
-                                    Buffer X, int incX);
+                                    Buffer X, int offsetX, int incX);
 
     public static native void dscal(int N, double alpha,
-                                    Buffer X, int incX);
+                                    Buffer X, int offsetX, int incX);
 
     /*
      * ------------------------------------------------------
@@ -195,12 +197,12 @@ public class CBLAS {
      */
 
     public static native void saxpy(int N, float alpha,
-                                    Buffer X, int incX,
-                                    Buffer Y, int incY);
+                                    Buffer X, int offsetX, int incX,
+                                    Buffer Y, int offsetY, int incY);
 
     public static native void daxpy(int N, double alpha,
-                                    Buffer X, int incX,
-                                    Buffer Y, int incY);
+                                    Buffer X, int offsetX, int incX,
+                                    Buffer Y, int offsetY, int incY);
 
     /*
      * ======================================================
@@ -211,25 +213,25 @@ public class CBLAS {
 
     /*
      * ------------------------------------------------------
-     * GEMV
+     * GEVM
      * ------------------------------------------------------
      */
 
     public static native void sgemv(int Order, int TransA,
                                     int M, int N,
                                     float alpha,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX,
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX,
                                     float beta,
-                                    Buffer Y, int incY);
+                                    Buffer Y, int offsetY, int incY);
 
     public static native void dgemv(int Order, int TransA,
                                     int M, int N,
                                     double alpha,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX,
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX,
                                     double beta,
-                                    Buffer Y, int incY);
+                                    Buffer Y, int offsetY, int incY);
 
     /*
      * ------------------------------------------------------
@@ -241,19 +243,20 @@ public class CBLAS {
                                     int M, int N,
                                     int KL, int KU,
                                     float alpha,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX,
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX,
                                     float beta,
-                                    Buffer Y, int incY);
+                                    Buffer Y, int offsetY, int incY);
+
 
     public static native void dgbmv(int Order, int TransA,
                                     int M, int N,
                                     int KL, int KU,
                                     double alpha,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX,
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX,
                                     double beta,
-                                    Buffer Y, int incY);
+                                    Buffer Y, int offsetY, int incY);
 
     /*
      * ------------------------------------------------------
@@ -264,18 +267,18 @@ public class CBLAS {
     public static native void ssymv(int Order, int Uplo,
                                     int N,
                                     float alpha,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX,
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX,
                                     float beta,
-                                    Buffer Y, int incY);
+                                    Buffer Y, int offsetY, int incY);
 
     public static native void dsymv(int Order, int Uplo,
                                     int N,
                                     double alpha,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX,
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX,
                                     double beta,
-                                    Buffer Y, int incY);
+                                    Buffer Y, int offsetY, int incY);
 
     /*
      * ------------------------------------------------------
@@ -286,18 +289,18 @@ public class CBLAS {
     public static native void ssbmv(int Order, int Uplo,
                                     int N, int K,
                                     float alpha,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX,
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX,
                                     float beta,
-                                    Buffer Y, int incY);
+                                    Buffer Y, int offsetY, int incY);
 
     public static native void dsbmv(int Order, int Uplo,
                                     int N, int K,
                                     double alpha,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX,
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX,
                                     double beta,
-                                    Buffer Y, int incY);
+                                    Buffer Y, int offsetY, int incY);
 
     /*
      * ------------------------------------------------------
@@ -309,17 +312,17 @@ public class CBLAS {
                                     int N,
                                     float alpha,
                                     Buffer Ap,
-                                    Buffer X, int incX,
+                                    Buffer X, int offsetX, int incX,
                                     float beta,
-                                    Buffer Y, int incY);
+                                    Buffer Y, int offsetY, int incY);
 
     public static native void dspmv(int Order, int Uplo,
                                     int N,
                                     double alpha,
                                     Buffer Ap,
-                                    Buffer X, int incX,
+                                    Buffer X, int offsetX, int incX,
                                     double beta,
-                                    Buffer Y, int incY);
+                                    Buffer Y, int offsetY, int incY);
 
     /*
      * ------------------------------------------------------
@@ -327,15 +330,17 @@ public class CBLAS {
      * ------------------------------------------------------
      */
 
-    public static native void strmv(int Order, int Uplo, int TransA,
-                                    int N, float alpha,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX);
+    public static native void strmv(int Order, int Uplo,
+                                    int TransA, int Diag,
+                                    int N,
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX);
 
-    public static native void dtrmv(int Order, int Uplo, int TransA,
-                                    int N, double alpha,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX);
+    public static native void dtrmv(int Order, int Uplo,
+                                    int TransA, int Diag,
+                                    int N,
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX);
 
     /*
      * ------------------------------------------------------
@@ -346,14 +351,14 @@ public class CBLAS {
     public static native void stbmv(int Order, int Uplo,
                                     int TransA, int Diag,
                                     int N, int K,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX);
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX);
 
     public static native void dtbmv(int Order, int Uplo,
                                     int TransA, int Diag,
                                     int N, int K,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX);
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX);
 
     /*
      * ------------------------------------------------------
@@ -365,13 +370,13 @@ public class CBLAS {
                                     int TransA, int Diag,
                                     int N,
                                     Buffer Ap,
-                                    Buffer X, int incX);
+                                    Buffer X, int offsetX, int incX);
 
     public static native void dtpmv(int Order, int Uplo,
                                     int TransA, int Diag,
                                     int N,
                                     Buffer Ap,
-                                    Buffer X, int incX);
+                                    Buffer X, int offsetX, int incX);
 
     /*
      * ------------------------------------------------------
@@ -382,14 +387,14 @@ public class CBLAS {
     public static native void strsv(int Order, int Uplo,
                                     int TransA, int Diag,
                                     int N,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX);
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX);
 
     public static native void dtrsv(int Order, int Uplo,
                                     int TransA, int Diag,
                                     int N,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX);
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX);
 
     /*
      * ------------------------------------------------------
@@ -400,14 +405,14 @@ public class CBLAS {
     public static native void stbsv(int Order, int Uplo,
                                     int TransA, int Diag,
                                     int N, int K,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX);
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX);
 
     public static native void dtbsv(int Order, int Uplo,
                                     int TransA, int Diag,
                                     int N, int K,
-                                    Buffer A, int lda,
-                                    Buffer X, int incX);
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer X, int offsetX, int incX);
 
     /*
      * ------------------------------------------------------
@@ -419,13 +424,13 @@ public class CBLAS {
                                     int TransA, int Diag,
                                     int N,
                                     Buffer Ap,
-                                    Buffer X, int incX);
+                                    Buffer X, int offsetX, int incX);
 
     public static native void dtpsv(int Order, int Uplo,
                                     int TransA, int Diag,
                                     int N,
                                     Buffer Ap,
-                                    Buffer X, int incX);
+                                    Buffer X, int offsetX, int incX);
 
     /*
      * ------------------------------------------------------
@@ -436,16 +441,16 @@ public class CBLAS {
     public static native void sger(int Order,
                                    int M, int N,
                                    float alpha,
-                                   Buffer X, int incX,
-                                   Buffer Y, int incY,
-                                   Buffer A, int lda);
+                                   Buffer X, int offsetX, int incX,
+                                   Buffer Y, int offsetY, int incY,
+                                   Buffer A, int offsetA, int lda);
 
     public static native void dger(int Order,
                                    int M, int N,
                                    double alpha,
-                                   Buffer X, int incX,
-                                   Buffer Y, int incY,
-                                   Buffer A, int lda);
+                                   Buffer X, int offsetX, int incX,
+                                   Buffer Y, int offsetY, int incY,
+                                   Buffer A, int offsetA, int lda);
 
     /*
      * ------------------------------------------------------
@@ -456,14 +461,14 @@ public class CBLAS {
     public static native void ssyr(int Order, int Uplo,
                                    int N,
                                    float alpha,
-                                   Buffer X, int incX,
-                                   Buffer A, int lda);
+                                   Buffer X, int offsetX, int incX,
+                                   Buffer A, int offsetA, int lda);
 
     public static native void dsyr(int Order, int Uplo,
                                    int N,
                                    double alpha,
-                                   Buffer X, int incX,
-                                   Buffer A, int lda);
+                                   Buffer X, int offsetX, int incX,
+                                   Buffer A, int offsetA, int lda);
 
     /*
      * ------------------------------------------------------
@@ -474,13 +479,13 @@ public class CBLAS {
     public static native void sspr(int Order, int Uplo,
                                    int N,
                                    float alpha,
-                                   Buffer X, int incX,
+                                   Buffer X, int offsetX, int incX,
                                    Buffer Ap);
 
     public static native void dspr(int Order, int Uplo,
                                    int N,
                                    double alpha,
-                                   Buffer X, int incX,
+                                   Buffer X, int offsetX, int incX,
                                    Buffer Ap);
 
     /*
@@ -492,16 +497,16 @@ public class CBLAS {
     public static native void ssyr2(int Order, int Uplo,
                                     int N,
                                     float alpha,
-                                    Buffer X, int incX,
-                                    Buffer Y, int incY,
-                                    Buffer A, int lda);
+                                    Buffer X, int offsetX, int incX,
+                                    Buffer Y, int offsetY, int incY,
+                                    Buffer A, int offsetA, int lda);
 
     public static native void dsyr2(int Order, int Uplo,
                                     int N,
                                     double alpha,
-                                    Buffer X, int incX,
-                                    Buffer Y, int incY,
-                                    Buffer A, int lda);
+                                    Buffer X, int offsetX, int incX,
+                                    Buffer Y, int offsetY, int incY,
+                                    Buffer A, int offsetA, int lda);
 
     /*
      * ------------------------------------------------------
@@ -512,15 +517,15 @@ public class CBLAS {
     public static native void sspr2(int Order, int Uplo,
                                     int N,
                                     float alpha,
-                                    Buffer X, int incX,
-                                    Buffer Y, int incY,
+                                    Buffer X, int offsetX, int incX,
+                                    Buffer Y, int offsetY, int incY,
                                     Buffer Ap);
 
     public static native void dspr2(int Order, int Uplo,
                                     int N,
                                     double alpha,
-                                    Buffer X, int incX,
-                                    Buffer Y, int incY,
+                                    Buffer X, int offsetX, int incX,
+                                    Buffer Y, int offsetY, int incY,
                                     Buffer Ap);
 
     /*
@@ -539,18 +544,18 @@ public class CBLAS {
     public static native void sgemm(int Order, int TransA, int TransB,
                                     int M, int N, int K,
                                     float alpha,
-                                    Buffer A, int lda,
-                                    Buffer B, int ldb,
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer B, int offsetB, int ldb,
                                     float beta,
-                                    Buffer C, int ldc);
+                                    Buffer C, int offsetC, int ldc);
 
     public static native void dgemm(int Order, int TransA, int TransB,
                                     int M, int N, int K,
                                     double alpha,
-                                    Buffer A, int lda,
-                                    Buffer B, int ldb,
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer B, int offsetB, int ldb,
                                     double beta,
-                                    Buffer C, int ldc);
+                                    Buffer C, int offsetC, int ldc);
 
     /*
      * ------------------------------------------------------
@@ -561,18 +566,18 @@ public class CBLAS {
     public static native void ssymm(int Order, int Side, int Uplo,
                                     int M, int N,
                                     float alpha,
-                                    Buffer A, int lda,
-                                    Buffer B, int ldb,
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer B, int offsetB, int ldb,
                                     float beta,
-                                    Buffer C, int ldc);
+                                    Buffer C, int offsetC, int ldc);
 
     public static native void dsymm(int Order, int Side, int Uplo,
                                     int M, int N,
                                     double alpha,
-                                    Buffer A, int lda,
-                                    Buffer B, int ldb,
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer B, int offsetB, int ldb,
                                     double beta,
-                                    Buffer C, int ldc);
+                                    Buffer C, int offsetC, int ldc);
 
     /*
      * ------------------------------------------------------
@@ -583,16 +588,16 @@ public class CBLAS {
     public static native void ssyrk(int Order, int Uplo, int Trans,
                                     int N, int K,
                                     float alpha,
-                                    Buffer A, int lda,
+                                    Buffer A, int offsetA, int lda,
                                     float beta,
-                                    Buffer C, int ldc);
+                                    Buffer C, int offsetC, int ldc);
 
     public static native void dsyrk(int Order, int Uplo, int Trans,
                                     int N, int K,
                                     double alpha,
-                                    Buffer A, int lda,
+                                    Buffer A, int offsetA, int lda,
                                     float beta,
-                                    Buffer C, int ldc);
+                                    Buffer C, int offsetC, int ldc);
 
     /*
      * ------------------------------------------------------
@@ -603,18 +608,18 @@ public class CBLAS {
     public static native void ssyr2k(int Order, int Uplo, int Trans,
                                     int N, int K,
                                     float alpha,
-                                    Buffer A, int lda,
-                                    Buffer B, int ldb,
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer B, int offsetB, int ldb,
                                     float beta,
-                                    Buffer C, int ldc);
+                                    Buffer C, int offsetC, int ldc);
 
     public static native void dsyr2k(int Order, int Uplo, int Trans,
                                      int N, int K,
                                      double alpha,
-                                     Buffer A, int lda,
-                                     Buffer B, int ldb,
+                                     Buffer A, int offsetA, int lda,
+                                     Buffer B, int offsetB, int ldb,
                                      double beta,
-                                     Buffer C, int ldc);
+                                     Buffer C, int offsetC, int ldc);
 
     /*
      * ------------------------------------------------------
@@ -626,15 +631,15 @@ public class CBLAS {
                                     int Uplo, int TransA, int Diag,
                                     int M, int N,
                                     float alpha,
-                                    Buffer A, int lda,
-                                    Buffer B, int ldb);
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer B, int offsetB, int ldb);
 
     public static native void dtrmm(int Order, int Side,
                                     int Uplo, int TransA, int Diag,
                                     int M, int N,
                                     double alpha,
-                                    Buffer A, int lda,
-                                    Buffer B, int ldb);
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer B, int offsetB, int ldb);
 
     /*
      * ------------------------------------------------------
@@ -646,15 +651,15 @@ public class CBLAS {
                                     int Uplo, int TransA, int Diag,
                                     int M, int N,
                                     float alpha,
-                                    Buffer A, int lda,
-                                    Buffer B, int ldb);
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer B, int offsetB, int ldb);
 
     public static native void dtrsm(int Order, int Side,
                                     int Uplo, int TransA, int Diag,
                                     int M, int N,
                                     double alpha,
-                                    Buffer A, int lda,
-                                    Buffer B, int ldb);
+                                    Buffer A, int offsetA, int lda,
+                                    Buffer B, int offsetB, int ldb);
 
 
     /*
@@ -663,8 +668,8 @@ public class CBLAS {
      * ------------------------------------------------------
      */
 
-    public static native float ssum(int N, Buffer X, int incX);
+    public static native float ssum(int N, Buffer X, int offsetX, int incX);
 
-    public static native double dsum(int N, Buffer X, int incX);
+    public static native double dsum(int N, Buffer X, int offsetX, int incX);
 
 }
