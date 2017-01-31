@@ -116,11 +116,9 @@ public class CBLAS {
      * ------------------------------------------------------
      */
 
-    public static native void srotg(Buffer ab, int offset_ab, int inc_ab,
-                                    Buffer cs, int offset_cs, int inc_cs);
+    public static native void srotg(Buffer abcs, int offset_abcs, int inc_abcs);
 
-    public static native void drotg(Buffer ab, int offset_ab, int inc_ab,
-                                    Buffer cs, int offset_cs, int inc_cs);
+    public static native void drotg(Buffer abcs, int offset_abcs, int inc_abcs);
 
     /*
      * ------------------------------------------------------
