@@ -3,6 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <neanderthal-atlas-version>0.4.0-SNAPSHOT</neanderthal-atlas-version>
         <skipTests>true</skipTests>
     </properties>
