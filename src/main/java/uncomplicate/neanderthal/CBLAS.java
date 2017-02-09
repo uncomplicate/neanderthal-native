@@ -29,6 +29,30 @@ public class CBLAS {
         NarSystem.loadLibrary();
     }
 
+
+    /* ======================================================
+     *
+     * Atlas Functions
+     *
+     * =====================================================
+     */
+
+    // --------- set ---------------------------------------
+
+    public static native void sset(int N, float alpha, Buffer X, int offsetX, int incX);
+
+    public static native void dset(int N, double alpha, Buffer X, int offsetX, int incX);
+
+    // ---------- axpby ------------------------------------
+
+    public static native void saxpby(int N,
+                                    float alpha, Buffer X, int offsetX, int incX,
+                                    float beta, Buffer Y, int offsetY, int incY);
+
+    public static native void daxpby(int N,
+                                     double alpha, Buffer X, int offsetX, int incX,
+                                     double beta, Buffer Y, int offsetY, int incY);
+
     /*
      * ======================================================
      * Level 1 BLAS functions

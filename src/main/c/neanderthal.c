@@ -45,6 +45,60 @@ void cblas_xerbla(int p, const char *rout, const char *form, ...) {
     return;
 };
 
+
+/*
+ * ======================================================
+ * Atlas functions
+ * ======================================================
+ */
+
+/*
+ * ------------------------------------------------------
+ * SET
+ * ------------------------------------------------------
+ */
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_CBLAS_sset
+(JNIEnv *env, jclass clazz, jint N, jfloat alpha, jobject X, jint offsetX, jint incX) {
+
+    float *cX = (float *) (*env)->GetDirectBufferAddress(env, X);
+    catlas_sset(N, alpha, cX + offsetX, incX);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_CBLAS_dset
+(JNIEnv *env, jclass clazz, jint N, jdouble alpha, jobject X, jint offsetX, jint incX) {
+
+    double *cX = (double *) (*env)->GetDirectBufferAddress(env, X);
+    catlas_dset(N, alpha, cX + offsetX, incX);
+};
+
+/*
+* ------------------------------------------------------
+* AXPBY
+* ------------------------------------------------------
+*/
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_CBLAS_saxpby
+(JNIEnv *env, jclass clazz,
+ jint N, jfloat alpha, jobject X, jint offsetX, jint incX,
+ jfloat beta, jobject Y, jint offsetY, jint incY) {
+
+    float *cX = (float *) (*env)->GetDirectBufferAddress(env, X);
+    float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
+    catlas_saxpby(N, alpha, cX + offsetX, incX, beta, cY + offsetY, incY);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_CBLAS_daxpby
+(JNIEnv *env, jclass clazz,
+ jint N, jdouble alpha, jobject X, jint offsetX, jint incX,
+ jdouble beta, jobject Y, jint offsetY, jint incY) {
+
+    double *cX = (double *) (*env)->GetDirectBufferAddress(env, X);
+    double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
+    catlas_daxpby(N, alpha, cX + offsetX, incX, beta, cY + offsetY, incY);
+};
+
+
 /*
  * ======================================================
  * Level 1 BLAS functions
