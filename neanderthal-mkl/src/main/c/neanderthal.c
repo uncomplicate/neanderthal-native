@@ -8,7 +8,7 @@
 
 #include <stdlib.h>
 #include <jni.h>
-#include "cblas.h"
+#include "mkl.h"
 #include "uncomplicate_neanderthal_CBLAS.h"
 
 
@@ -62,14 +62,20 @@ JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_CBLAS_sset
 (JNIEnv *env, jclass clazz, jint N, jfloat alpha, jobject X, jint offsetX, jint incX) {
 
     float *cX = (float *) (*env)->GetDirectBufferAddress(env, X);
-    catlas_sset(N, alpha, cX + offsetX, incX);
+    const int end = offsetX + N * incX;
+    for (int i = offsetX; i < end; i+=incX) {
+        cX[i] = alpha;
+    }
 };
 
 JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_CBLAS_dset
 (JNIEnv *env, jclass clazz, jint N, jdouble alpha, jobject X, jint offsetX, jint incX) {
 
     double *cX = (double *) (*env)->GetDirectBufferAddress(env, X);
-    catlas_dset(N, alpha, cX + offsetX, incX);
+    const int end = offsetX + N * incX;
+    for (int i = offsetX; i < end; i+=incX) {
+        cX[i] = alpha;
+    }
 };
 
 /*
@@ -85,7 +91,7 @@ JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_CBLAS_saxpby
 
     float *cX = (float *) (*env)->GetDirectBufferAddress(env, X);
     float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
-    catlas_saxpby(N, alpha, cX + offsetX, incX, beta, cY + offsetY, incY);
+    cblas_saxpby(N, alpha, cX + offsetX, incX, beta, cY + offsetY, incY);
 };
 
 JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_CBLAS_daxpby
@@ -95,7 +101,7 @@ JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_CBLAS_daxpby
 
     double *cX = (double *) (*env)->GetDirectBufferAddress(env, X);
     double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
-    catlas_daxpby(N, alpha, cX + offsetX, incX, beta, cY + offsetY, incY);
+    cblas_daxpby(N, alpha, cX + offsetX, incX, beta, cY + offsetY, incY);
 };
 
 
@@ -326,14 +332,14 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_CBLAS_isamax
 (JNIEnv *env, jclass clazz, jint N, jobject X, jint offsetX, jint incX) {
 
     float *cX = (float *) (*env)->GetDirectBufferAddress(env, X);
-    return cblas_isamax(N, cX + offsetX, incX);
+    return (int)cblas_isamax(N, cX + offsetX, incX);
 };
 
 JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_CBLAS_idamax
 (JNIEnv *env, jclass clazz, jint N, jobject X, jint offsetX, jint incX) {
 
     double *cX = (double *) (*env)->GetDirectBufferAddress(env, X);
-    return cblas_idamax(N, cX + offsetX, incX);
+    return (int)cblas_idamax(N, cX + offsetX, incX);
 };
 
 /*

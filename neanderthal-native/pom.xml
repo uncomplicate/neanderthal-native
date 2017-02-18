@@ -4,7 +4,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <neanderthal-atlas-version>0.4.0-SNAPSHOT</neanderthal-atlas-version>
+        <neanderthal-mkl-version>0.9.0-SNAPSHOT</neanderthal-atlas-version>
         <skipTests>true</skipTests>
     </properties>
 
@@ -13,10 +13,10 @@
     <version>0.9.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Neanderthal JNI ATLAS Bindings</name>
-    <description>Uberjar of JNI Bindings for ATLAS BLAS and LAPACK library.
+    <name>Neanderthal JNI BLAS/LAPACK Bindings</name>
+    <description>Uberjar of JNI Bindings for native BLAS and LAPACK library.
     </description>
-    <url>https://github.com/uncomplicate/neanderthal-atlas</url>
+    <url>https://github.com/uncomplicate/neanderthal-native</url>
 
     <issueManagement>
 	<url>https://github.com/uncomplicate/neanderthal-native/issues</url>
@@ -55,25 +55,25 @@
     <dependencies>
         <dependency>
             <groupId>uncomplicate</groupId>
-            <artifactId>neanderthal-atlas</artifactId>
-            <version>${neanderthal-atlas-version}</version>
+            <artifactId>neanderthal-mkl</artifactId>
+            <version>${neanderthal-mkl-version}</version>
         </dependency>
         <dependency>
             <groupId>uncomplicate</groupId>
-            <artifactId>neanderthal-atlas</artifactId>
-            <version>${neanderthal-atlas-version}</version>
+            <artifactId>neanderthal-mkl</artifactId>
+            <version>${neanderthal-mkl-version}</version>
             <classifier>amd64-Linux-gpp-jni</classifier>
         </dependency>
 <!--        <dependency>
             <groupId>uncomplicate</groupId>
-            <artifactId>neanderthal-atlas</artifactId>
-            <version>${neanderthal-atlas-version}</version>
+            <artifactId>neanderthal-mkl</artifactId>
+            <version>${neanderthal-mkl-version}</version>
             <classifier>x86_64-MacOSX-gpp-jni</classifier>
         </dependency>
         <dependency>
             <groupId>uncomplicate</groupId>
-            <artifactId>neanderthal-atlas</artifactId>
-            <version>${neanderthal-atlas-version}</version>
+            <artifactId>neanderthal-mkl</artifactId>
+            <version>${neanderthal-mkl-version}</version>
             <classifier>amd64-Windows-gpp-jni</classifier>
         </dependency>-->
     </dependencies>
