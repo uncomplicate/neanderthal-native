@@ -4,7 +4,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <neanderthal-mkl-version>0.9.0-SNAPSHOT</neanderthal-atlas-version>
+        <neanderthal-mkl-version>0.9.0-SNAPSHOT</neanderthal-mkl-version>
         <skipTests>true</skipTests>
     </properties>
 

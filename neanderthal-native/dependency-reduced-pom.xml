@@ -3,10 +3,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>uncomplicate</groupId>
   <artifactId>neanderthal-native</artifactId>
-  <name>Neanderthal JNI ATLAS Bindings</name>
+  <name>Neanderthal JNI BLAS/LAPACK Bindings</name>
   <version>0.9.0-SNAPSHOT</version>
-  <description>Uberjar of JNI Bindings for ATLAS BLAS and LAPACK library.</description>
-  <url>https://github.com/uncomplicate/neanderthal-atlas</url>
+  <description>Uberjar of JNI Bindings for native BLAS and LAPACK library.</description>
+  <url>https://github.com/uncomplicate/neanderthal-native</url>
   <issueManagement>
     <system>GitHub Issues</system>
     <url>https://github.com/uncomplicate/neanderthal-native/issues</url>
@@ -80,7 +80,7 @@
   </distributionManagement>
   <properties>
     <skipTests>true</skipTests>
-    <neanderthal-atlas-version>0.5.0-SNAPSHOT</neanderthal-atlas-version>
+    <neanderthal-mkl-version>0.9.0-SNAPSHOT</neanderthal-mkl-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>
