@@ -6,7 +6,7 @@
 //   the terms of this license.
 //   You must not remove this notice, or any other, from this software.
 
-package uncomplicate.neanderthal;
+package uncomplicate.neanderthal.internal.host;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -16,7 +16,7 @@ import java.nio.ByteOrder;
 public class TestCBLAS {
 
     @Test
-    public void testCBLAS() {
+    public void testCBLASddot() {
         ByteBuffer x = ByteBuffer.allocateDirect(24);
         x.order(ByteOrder.LITTLE_ENDIAN);
         x.putDouble(0, 1.0);
@@ -25,6 +25,21 @@ public class TestCBLAS {
         x.position(0);
         NarSystem.loadLibrary();
         assertEquals(14.0, CBLAS.ddot(3, x, 0, 1, x, 0, 1), 0.0);
+    }
+
+    @Test
+    public void testCBLASdcopy() {
+        ByteBuffer x = ByteBuffer.allocateDirect(24);
+        x.order(ByteOrder.LITTLE_ENDIAN);
+        x.putDouble(0, 1.0);
+        x.putDouble(8, 2.0);
+        x.putDouble(16, 3.0);
+        x.position(0);
+        ByteBuffer y = ByteBuffer.allocateDirect(24);
+        y.order(ByteOrder.LITTLE_ENDIAN);
+        NarSystem.loadLibrary();
+        CBLAS.dcopy(3, x, 0, 1, y, 0, 1);
+        assertEquals(1.0, y.getDouble(0), 0.0);
     }
 
 }

@@ -62,19 +62,19 @@
             <groupId>uncomplicate</groupId>
             <artifactId>neanderthal-mkl</artifactId>
             <version>${neanderthal-mkl-version}</version>
-            <classifier>amd64-Linux-gpp-jni</classifier>
+            <classifier>amd64-Linux-gpp</classifier>
         </dependency>
 <!--        <dependency>
             <groupId>uncomplicate</groupId>
             <artifactId>neanderthal-mkl</artifactId>
             <version>${neanderthal-mkl-version}</version>
-            <classifier>x86_64-MacOSX-gpp-jni</classifier>
+            <classifier>x86_64-MacOSX-gpp</classifier>
         </dependency>
         <dependency>
             <groupId>uncomplicate</groupId>
             <artifactId>neanderthal-mkl</artifactId>
             <version>${neanderthal-mkl-version}</version>
-            <classifier>amd64-Windows-gpp-jni</classifier>
+            <classifier>amd64-Windows-gpp</classifier>
         </dependency>-->
     </dependencies>
 

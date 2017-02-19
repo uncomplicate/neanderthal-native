@@ -171,7 +171,7 @@
                     <plugin>
                         <groupId>com.github.maven-nar</groupId>
                         <artifactId>nar-maven-plugin</artifactId>
-						<version>3.2.3</version>
+			<version>3.2.3</version>
                         <configuration>
                             <linker>
                                 <name>msvc</name>
@@ -217,7 +217,7 @@
                     <libraries>
                         <library>
                             <type>jni</type>
-                            <narSystemPackage>uncomplicate.neanderthal</narSystemPackage>
+                            <narSystemPackage>uncomplicate.neanderthal.internal.host</narSystemPackage>
                             <linkCPP>false</linkCPP>
                         </library>
                     </libraries>
