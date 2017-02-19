@@ -171,6 +171,7 @@
                     <plugin>
                         <groupId>com.github.maven-nar</groupId>
                         <artifactId>nar-maven-plugin</artifactId>
+						<version>3.2.3</version>
                         <configuration>
                             <linker>
                                 <name>msvc</name>
@@ -182,7 +183,7 @@
                             </linker>
                             <cpp>
                                 <options>
-                                    <option>"%MKLROOT%"\include</option>
+                                    <option>I"%MKLROOT%"\include</option>
                                 </options>
                             </cpp>
                         </configuration>
@@ -243,8 +244,8 @@
                             <target name="copy and rename file">
                                 <copy file="${project.build.directory}/${project.build.finalName}.jar"
                                       tofile="${project.build.directory}/${project.build.finalName}.nar" />
-                                <copy file="${project.build.directory}/${project.build.finalName}-${os.arch}-${jar-os-name}-gpp-jni.nar"
-                                      tofile="${project.build.directory}/${project.build.finalName}-${os.arch}-${jar-os-name}-gpp-jni.jar"/>
+                                <copy file="${project.build.directory}/${project.build.finalName}-${nar.aol}-jni.nar"
+                                      tofile="${project.build.directory}/${project.build.finalName}-${nar.aol}.jar"/>
                             </target>
                         </configuration>
                         <goals>
@@ -272,9 +273,9 @@
                                     <type>jar</type>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/${project.build.finalName}-${os.arch}-${jar-os-name}-gpp-jni.nar</file>
+                                    <file>${project.build.directory}/${project.build.finalName}-${nar.aol}-jni.nar</file>
                                     <type>jar</type>
-                                    <classifier>${os.arch}-${jar-os-name}-gpp-jni</classifier>
+                                    <classifier>${nar.aol}</classifier>
                                 </artifact>
                             </artifacts>
                         </configuration>
