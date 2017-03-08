@@ -10,6 +10,7 @@ package uncomplicate.neanderthal.internal.host;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
+import org.junit.BeforeClass;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -23,7 +24,6 @@ public class TestCBLAS {
         x.putDouble(8, 2.0);
         x.putDouble(16, 3.0);
         x.position(0);
-        NarSystem.loadLibrary();
         assertEquals(14.0, CBLAS.ddot(3, x, 0, 1, x, 0, 1), 0.0);
     }
 
@@ -37,9 +37,16 @@ public class TestCBLAS {
         x.position(0);
         ByteBuffer y = ByteBuffer.allocateDirect(24);
         y.order(ByteOrder.LITTLE_ENDIAN);
-        NarSystem.loadLibrary();
         CBLAS.dcopy(3, x, 0, 1, y, 0, 1);
         assertEquals(1.0, y.getDouble(0), 0.0);
     }
 
+    /* custom xerbla currently does not work
+    @Test(expected = RuntimeException.class)
+    public void testXerbla() {
+        ByteBuffer a = ByteBuffer.allocateDirect(24);
+        ByteBuffer x = ByteBuffer.allocateDirect(24);
+        ByteBuffer y = ByteBuffer.allocateDirect(8);
+        CBLAS.dgemv(-11, -12, 1, 3, 5.0, a, 0, 1, x, 0, 1, 3.0, y, 0, 1);
+    }    */
 }
