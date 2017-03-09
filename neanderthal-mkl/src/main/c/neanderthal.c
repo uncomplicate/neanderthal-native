@@ -1291,32 +1291,6 @@ JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_CBLAS_dtrsm
  */
 
 /*
- * ------------------------------------------------------
- * SET
- * ------------------------------------------------------
- */
-
-JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_sset
-(JNIEnv *env, jclass clazz, jint N, jfloat alpha, jobject X, jint offsetX, jint incX) {
-
-    float *cX = (float *) (*env)->GetDirectBufferAddress(env, X);
-    const int end = offsetX + N * incX;
-    for (int i = offsetX; i < end; i+=incX) {
-        cX[i] = alpha;
-    }
-};
-
-JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_dset
-(JNIEnv *env, jclass clazz, jint N, jdouble alpha, jobject X, jint offsetX, jint incX) {
-
-    double *cX = (double *) (*env)->GetDirectBufferAddress(env, X);
-    const int end = offsetX + N * incX;
-    for (int i = offsetX; i < end; i+=incX) {
-        cX[i] = alpha;
-    }
-};
-
-/*
 * ------------------------------------------------------
 * AXPBY
 * ------------------------------------------------------
