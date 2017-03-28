@@ -73,9 +73,6 @@
                     <name>Linux</name>
                 </os>
             </activation>
-            <properties>
-                <jar-os-name>Linux</jar-os-name>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -118,9 +115,6 @@
                     <name>Mac OS X</name>
                 </os>
             </activation>
-            <properties>
-                <jar-os-name>MacOSX</jar-os-name>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -163,9 +157,6 @@
                     <family>windows</family>
                 </os>
             </activation>
-            <properties>
-                <jar-os-name>Windows</jar-os-name>
-            </properties>
             <build>
                 <plugins>
                     <plugin>

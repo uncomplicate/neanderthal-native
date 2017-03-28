@@ -2144,7 +2144,7 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgebrd
  */
 
 JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sorgbr
-(JNIEnv *env, jclass clazz, jint Order, int vect, jint M, jint N, jint K,
+(JNIEnv *env, jclass clazz, jint Order, jint vect, jint M, jint N, jint K,
  jobject A, jint offsetA, jint lda, jobject tau, jint offsetTau) {
 
     float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
@@ -2153,7 +2153,7 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sorgbr
 };
 
 JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dorgbr
-(JNIEnv *env, jclass clazz, jint Order, int vect, jint M, jint N, jint K,
+(JNIEnv *env, jclass clazz, jint Order, jint vect, jint M, jint N, jint K,
  jobject A, jint offsetA, jint lda, jobject tau, jint offsetTau) {
 
     double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
