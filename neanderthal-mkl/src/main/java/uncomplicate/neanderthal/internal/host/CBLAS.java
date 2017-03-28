@@ -89,6 +89,16 @@ public class CBLAS {
     public static native int idamax(int N, Buffer X, int offsetX, int incX);
 
     /*
+     * ------------------------------------------------------
+     * IAMIN
+     * ------------------------------------------------------
+     */
+
+    public static native int isamin(int N, Buffer X, int offsetX, int incX);
+
+    public static native int idamin(int N, Buffer X, int offsetX, int incX);
+
+    /*
      * ======================================================
      * Level 1 BLAS procedures
      * ======================================================

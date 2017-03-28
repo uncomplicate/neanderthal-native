@@ -107,6 +107,7 @@ public class LAPACK {
      * Orthogonal Factorization Routines
      * -----------------------------------------------------------------
      */
+    // QRF
 
     public static native int sgeqrf (int Order, int M, int N,
                                      Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
@@ -114,29 +115,91 @@ public class LAPACK {
     public static native int dgeqrf (int Order, int M, int N,
                                      Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
 
+    public static native int sorgqr(int Order, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
+
+    public static native int dorgqr(int Order, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
+
+    public static native int sormqr(int Order, int side, int trans, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau,
+                                    Buffer B, int offsetB, int ldb);
+
+    public static native int dormqr(int Order, int side, int trans, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau,
+                                    Buffer B, int offsetB, int ldb);
+
+    // QRFP
     public static native int sgeqrfp (int Order, int M, int N,
                                       Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
 
     public static native int dgeqrfp (int Order, int M, int N,
                                       Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
 
+
+    // RQF
     public static native int sgerqf (int Order, int M, int N,
                                      Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
 
     public static native int dgerqf (int Order, int M, int N,
                                      Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
 
+    public static native int sorgrq(int Order, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
+
+    public static native int dorgrq(int Order, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
+
+    public static native int sormrq(int Order, int side, int trans, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau,
+                                    Buffer B, int offsetB, int ldb);
+
+    public static native int dormrq(int Order, int side, int trans, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau,
+                                    Buffer B, int offsetB, int ldb);
+
+    // LQF
     public static native int sgelqf (int Order, int M, int N,
                                      Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
 
     public static native int dgelqf (int Order, int M, int N,
                                      Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
 
+    public static native int sorglq(int Order, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
+
+    public static native int dorglq(int Order, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
+
+    public static native int sormlq(int Order, int side, int trans, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau,
+                                    Buffer B, int offsetB, int ldb);
+
+    public static native int dormlq(int Order, int side, int trans, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau,
+                                    Buffer B, int offsetB, int ldb);
+
+    // QLF
     public static native int sgeqlf (int Order, int M, int N,
                                      Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
 
     public static native int dgeqlf (int Order, int M, int N,
                                      Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
+
+    public static native int sorgql(int Order, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
+
+    public static native int dorgql(int Order, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
+
+    public static native int sormql(int Order, int side, int trans, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau,
+                                    Buffer B, int offsetB, int ldb);
+
+    public static native int dormql(int Order, int side, int trans, int M, int N, int K,
+                                    Buffer A, int offsetA, int lda, Buffer tau, int offsetTau,
+                                    Buffer B, int offsetB, int ldb);
+
 
     /*
      * -----------------------------------------------------------------
@@ -145,10 +208,10 @@ public class LAPACK {
      */
 
     public static native int sgels (int Order, int trans, int M, int N, int nrhs,
-                                    Buffer A, int offsetA, int lda, Buffer b, int offsetB, int ldb);
+                                    Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
 
     public static native int dgels (int Order, int trans, int M, int N, int nrhs,
-                                    Buffer A, int offsetA, int lda, Buffer b, int offsetB, int ldb);
+                                    Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
 
     /*
      * -----------------------------------------------------------------
@@ -157,11 +220,11 @@ public class LAPACK {
      */
 
     public static native int sgeev (int Order, int jobvl, int jobvr, int N, Buffer a, int offsetA, int lda,
-                                    Buffer WR, int offsetWR, Buffer WL, int offsetWL,
+                                    Buffer WR, int offsetWR, Buffer WI, int offsetWI,
                                     Buffer VL, int offsetVL, int ldvl, Buffer VR, int offsetVR, int ldvr);
 
     public static native int dgeev (int Order, int jobvl, int jobvr, int N, Buffer a, int offsetA, int lda,
-                                    Buffer WR, int offsetWR, Buffer WL, int offsetWL,
+                                    Buffer WR, int offsetWR, Buffer WI, int offsetWI,
                                     Buffer VL, int offsetVL, int ldvl, Buffer VR, int offsetVR, int ldvr);
 
     /*
@@ -177,6 +240,12 @@ public class LAPACK {
     public static native int dgebrd (int Order, int M, int N, Buffer a, int offsetA, int lda,
                                      Buffer D, int offsetD, Buffer E, int offsetE,
                                      Buffer tauq, int offsetTauq, Buffer taup, int offsetTaup);
+
+    public static native int sorgbr (int Order, int vect, int M, int N, int K,
+                                     Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
+
+    public static native int dorgbr (int Order, int vect, int M, int N, int K,
+                                     Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
 
     public static native int sbdsqr (int Order, int uplo, int N, int ncvt, int nru, int ncc,
                                      Buffer D, int offsetD, Buffer E, int offsetE,
