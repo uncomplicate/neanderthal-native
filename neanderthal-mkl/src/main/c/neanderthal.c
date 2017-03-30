@@ -16,11 +16,12 @@
 
 JavaVM *javavm;
 
-// Note: this custom xerbla does not get called by MKL. I don't know why,
-// but MKL keeps calling its default xerbla, which only prints the message to
-// the output. Hopefully, Neanderthal will not send broken data, so this
-// should not be an issue, but I'll have to investigate what's the source of
-// this.
+// Note: this custom xerbla does not get called by MKL. This only happens in
+// the dynamic libraries context, but this is exactly our use case. Since the
+// default xerbla is already in memory, MKL keeps calling it.
+// Hopefully, Neanderthal will not send broken data, so this
+// should not be an issue, but I'll have to investigate if there is some way
+// to make it work (currently there isn't according to Intel's forum).
 void xerbla(const char *srname, const int *info, const int lsrname) {
 
     JNIEnv *env;
@@ -34,7 +35,7 @@ void xerbla(const char *srname, const int *info, const int lsrname) {
 
 JNIEXPORT jint JNICALL JNI_OnLoad (JavaVM *jvm, void *reserved) {
     javavm=jvm;
-    mkl_set_xerbla(xerbla);
+    //mkl_set_xerbla(xerbla); //also see xerbla comment.
     return JNI_VERSION_1_2;
 }
 
