@@ -2071,31 +2071,31 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgels
  */
 
 JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sgeev
-(JNIEnv *env, jclass clazz, jint Order, jint jobvr, jint jobvl, jint N,
+(JNIEnv *env, jclass clazz, jint Order, jint jobvl, jint jobvr, jint N,
  jobject A, jint offsetA, jint lda, jobject WR, jint offsetWR, jobject WI, jint offsetWI,
  jobject VL, jint offsetVL, jint ldvl, jobject VR, jint offsetVR, jint ldvr) {
 
     float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
     float *cWR = (float *) (*env)->GetDirectBufferAddress(env, WR);
     float *cWI = (float *) (*env)->GetDirectBufferAddress(env, WI);
-    float *cVR = (float *) (*env)->GetDirectBufferAddress(env, VR);
     float *cVL = (float *) (*env)->GetDirectBufferAddress(env, VL);
-    return LAPACKE_sgeev(Order, (char)jobvr, (char)jobvl, N, cA + offsetA, lda,
-                         cWR + offsetWR, cWI + offsetWI, cVL + offsetVL, ldvl, cVR + offsetVR, ldvl);
+    float *cVR = (float *) (*env)->GetDirectBufferAddress(env, VR);
+    return LAPACKE_sgeev(Order, (char)jobvl, (char)jobvr, N, cA + offsetA, lda,
+                         cWR + offsetWR, cWI + offsetWI, cVL + offsetVL, ldvl, cVR + offsetVR, ldvr);
 };
 
 JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgeev
-(JNIEnv *env, jclass clazz, jint Order, jint jobvr, jint jobvl, jint N,
+(JNIEnv *env, jclass clazz, jint Order, jint jobvl, jint jobvr, jint N,
  jobject A, jint offsetA, jint lda, jobject WR, jint offsetWR, jobject WI, jint offsetWI,
  jobject VL, jint offsetVL, jint ldvl, jobject VR, jint offsetVR, jint ldvr) {
 
     double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
     double *cWR = (double *) (*env)->GetDirectBufferAddress(env, WR);
     double *cWI = (double *) (*env)->GetDirectBufferAddress(env, WI);
-    double *cVR = (double *) (*env)->GetDirectBufferAddress(env, VR);
     double *cVL = (double *) (*env)->GetDirectBufferAddress(env, VL);
-    return LAPACKE_dgeev(Order, (char)jobvr, (char)jobvl, N, cA + offsetA, lda,
-                         cWR + offsetWR, cWI + offsetWI, cVL + offsetVL, ldvl, cVR + offsetVR, ldvl);
+    double *cVR = (double *) (*env)->GetDirectBufferAddress(env, VR);
+    return LAPACKE_dgeev(Order, (char)jobvl, (char)jobvr, N, cA + offsetA, lda,
+                         cWR + offsetWR, cWI + offsetWI, cVL + offsetVL, ldvl, cVR + offsetVR, ldvr);
 };
 
 /*
