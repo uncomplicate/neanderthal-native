@@ -1639,6 +1639,30 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgetrf
 
 /*
  * -----------------------------------------------------------------
+ * GETRI
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sgetri
+(JNIEnv *env, jclass clazz, jint Order, jint N,
+ jobject A, jint offsetA, jint lda, jobject ipiv, jint offsetIpiv) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    int *cipiv = (int *) (*env)->GetDirectBufferAddress(env, ipiv);
+    return LAPACKE_sgetri(Order, N, cA + offsetA, lda, cipiv + offsetIpiv);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgetri
+(JNIEnv *env, jclass clazz, jint Order, jint N,
+ jobject A, jint offsetA, jint lda, jobject ipiv, jint offsetIpiv) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    int *cipiv = (int *) (*env)->GetDirectBufferAddress(env, ipiv);
+    return LAPACKE_dgetri(Order, N, cA + offsetA, lda, cipiv + offsetIpiv);
+};
+
+/*
+ * -----------------------------------------------------------------
  * GETRS
  * -----------------------------------------------------------------
  */

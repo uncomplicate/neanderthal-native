@@ -84,6 +84,12 @@ public class LAPACK {
     public static native int dgetrf (int Order, int M, int N,
                                      Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv);
 
+    public static native int sgetri (int Order, int N,
+                                     Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv);
+
+    public static native int dgetri (int Order, int N,
+                                     Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv);
+
     public static native int sgetrs (int Order, int trans, int N, int nrhs,
                                      Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
                                      Buffer B, int offsetB, int ldb);
