@@ -1717,6 +1717,61 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgesv
 
 /*
  * -----------------------------------------------------------------
+ * Estimating Condition Number
+ * -----------------------------------------------------------------
+ */
+
+/*
+ * -----------------------------------------------------------------
+ * GECON
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sgecon
+(JNIEnv *env, jclass clazz, jint Order, jint norm, jint N,
+ jobject A, jint offsetA, jint lda, jfloat anorm, jobject rcond) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    float *crcond = (float *) (*env)->GetDirectBufferAddress(env, rcond);
+    return LAPACKE_sgecon(Order, (char)norm, N, cA + offsetA, lda, anorm, crcond);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgecon
+(JNIEnv *env, jclass clazz, jint Order, jint norm, jint N,
+ jobject A, jint offsetA, jint lda, jdouble anorm, jobject rcond) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    double *crcond = (double *) (*env)->GetDirectBufferAddress(env, rcond);
+    return LAPACKE_dgecon(Order, (char)norm, N, cA + offsetA, lda, anorm, crcond);
+};
+
+/*
+ * -----------------------------------------------------------------
+ * TRCON
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_strcon
+(JNIEnv *env, jclass clazz, jint Order, jint norm, jint uplo, jint diag, jint N,
+ jobject A, jint offsetA, jint lda, jobject rcond) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    float *crcond = (float *) (*env)->GetDirectBufferAddress(env, rcond);
+    return LAPACKE_strcon(Order, (char)norm, (char)uplo, (char)diag, N, cA + offsetA, lda, crcond);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dtrcon
+(JNIEnv *env, jclass clazz, jint Order, jint norm, jint uplo, jint diag, jint N,
+ jobject A, jint offsetA, jint lda, jobject rcond) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    double *crcond = (double *) (*env)->GetDirectBufferAddress(env, rcond);
+    return LAPACKE_dtrcon(Order, (char)norm, (char)uplo, (char)diag, N, cA + offsetA, lda, crcond);
+};
+
+
+/*
+ * -----------------------------------------------------------------
  * Orthogonal Factorization Routines
  * -----------------------------------------------------------------
  */

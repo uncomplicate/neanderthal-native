@@ -110,6 +110,25 @@ public class LAPACK {
 
     /*
      * -----------------------------------------------------------------
+     * Estimating Condition Number
+     * -----------------------------------------------------------------
+     */
+    // CON
+
+    public static native int sgecon (int Order, int norm, int N,
+                                     Buffer A, int offsetA, int lda, float anorm, Buffer rcond);
+
+    public static native int dgecon (int Order, int norm, int N,
+                                     Buffer A, int offsetA, int lda, double anorm, Buffer rcond);
+
+    public static native int strcon (int Order, int norm, int uplo, int diag, int N,
+                                     Buffer A, int offsetA, int lda, Buffer rcond);
+
+    public static native int dtrcon (int Order, int norm, int uplo, int diag, int N,
+                                     Buffer A, int offsetA, int lda, Buffer rcond);
+
+    /*
+     * -----------------------------------------------------------------
      * Orthogonal Factorization Routines
      * -----------------------------------------------------------------
      */
