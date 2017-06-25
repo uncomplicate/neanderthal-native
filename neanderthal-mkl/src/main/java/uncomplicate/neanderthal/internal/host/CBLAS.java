@@ -349,6 +349,11 @@ public class CBLAS {
                                     int N,
                                     Buffer A, int offsetA, int lda,
                                     Buffer X, int offsetX, int incX);
+    /*
+     * ------------------------------------------------------
+     * TRSV
+     * ------------------------------------------------------
+     */
 
     /*
      * ------------------------------------------------------
@@ -384,24 +389,6 @@ public class CBLAS {
                                     int TransA, int Diag,
                                     int N,
                                     Buffer Ap,
-                                    Buffer X, int offsetX, int incX);
-
-    /*
-     * ------------------------------------------------------
-     * TRSV
-     * ------------------------------------------------------
-     */
-
-    public static native void strsv(int Order, int Uplo,
-                                    int TransA, int Diag,
-                                    int N,
-                                    Buffer A, int offsetA, int lda,
-                                    Buffer X, int offsetX, int incX);
-
-    public static native void dtrsv(int Order, int Uplo,
-                                    int TransA, int Diag,
-                                    int N,
-                                    Buffer A, int offsetA, int lda,
                                     Buffer X, int offsetX, int incX);
 
     /*
@@ -651,6 +638,20 @@ public class CBLAS {
 
     /*
      * ------------------------------------------------------
+     * TRSV
+     * ------------------------------------------------------
+     */
+
+    public static native void strsv (int Order,int Uplo, int TransA, int Diag, int N,
+                                     Buffer A, int offsetA, int lda,
+                                     Buffer X, int offsetX, int strideX);
+
+    public static native void dtrsv (int Order,int Uplo, int TransA, int Diag, int N,
+                                     Buffer A, int offsetA, int lda,
+                                     Buffer X, int offsetX, int strideX);
+
+    /*
+     * ------------------------------------------------------
      * TRSM
      * ------------------------------------------------------
      */
@@ -668,7 +669,6 @@ public class CBLAS {
                                     double alpha,
                                     Buffer A, int offsetA, int lda,
                                     Buffer B, int offsetB, int ldb);
-
 
     /*
      * ------------------------------------------------------

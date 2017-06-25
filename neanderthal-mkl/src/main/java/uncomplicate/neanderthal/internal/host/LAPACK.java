@@ -90,6 +90,12 @@ public class LAPACK {
     public static native int dgetri (int Order, int N,
                                      Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv);
 
+    public static native int strtri (int Order, int uplo, int diag, int N,
+                                     Buffer A, int offsetA, int lda);
+
+    public static native int dtrtri (int Order, int uplo, int diag, int N,
+                                     Buffer A, int offsetA, int lda);
+
     public static native int sgetrs (int Order, int trans, int N, int nrhs,
                                      Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
                                      Buffer B, int offsetB, int ldb);
@@ -97,6 +103,12 @@ public class LAPACK {
     public static native int dgetrs (int Order, int trans, int N, int nrhs,
                                      Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
                                      Buffer B, int offsetB, int ldb);
+
+    public static native int strtrs (int Order, int uplo, int trans, int diag, int N, int nrhs,
+                                     Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
+
+    public static native int dtrtrs (int Order, int uplo, int trans, int diag, int N, int nrhs,
+                                     Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
 
     public static native int sgesv (int Order, int N, int nrhs,
                                     Buffer A, int offsetA, int lda,
