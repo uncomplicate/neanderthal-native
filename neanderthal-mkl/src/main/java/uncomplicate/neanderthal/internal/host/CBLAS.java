@@ -319,7 +319,7 @@ public class CBLAS {
     public static native void sspmv(int Order, int Uplo,
                                     int N,
                                     float alpha,
-                                    Buffer Ap,
+                                    Buffer Ap, int offsetAp,
                                     Buffer X, int offsetX, int incX,
                                     float beta,
                                     Buffer Y, int offsetY, int incY);
@@ -327,7 +327,7 @@ public class CBLAS {
     public static native void dspmv(int Order, int Uplo,
                                     int N,
                                     double alpha,
-                                    Buffer Ap,
+                                    Buffer Ap, int offsetAp,
                                     Buffer X, int offsetX, int incX,
                                     double beta,
                                     Buffer Y, int offsetY, int incY);
@@ -382,13 +382,13 @@ public class CBLAS {
     public static native void stpmv(int Order, int Uplo,
                                     int TransA, int Diag,
                                     int N,
-                                    Buffer Ap,
+                                    Buffer Ap, int offsetAp,
                                     Buffer X, int offsetX, int incX);
 
     public static native void dtpmv(int Order, int Uplo,
                                     int TransA, int Diag,
                                     int N,
-                                    Buffer Ap,
+                                    Buffer Ap, int offsetAp,
                                     Buffer X, int offsetX, int incX);
 
     /*
@@ -418,13 +418,13 @@ public class CBLAS {
     public static native void stpsv(int Order, int Uplo,
                                     int TransA, int Diag,
                                     int N,
-                                    Buffer Ap,
+                                    Buffer Ap, int offsetAp,
                                     Buffer X, int offsetX, int incX);
 
     public static native void dtpsv(int Order, int Uplo,
                                     int TransA, int Diag,
                                     int N,
-                                    Buffer Ap,
+                                    Buffer Ap, int offsetAp,
                                     Buffer X, int offsetX, int incX);
 
     /*
@@ -475,13 +475,13 @@ public class CBLAS {
                                    int N,
                                    float alpha,
                                    Buffer X, int offsetX, int incX,
-                                   Buffer Ap);
+                                   Buffer Ap, int offsetAp);
 
     public static native void dspr(int Order, int Uplo,
                                    int N,
                                    double alpha,
                                    Buffer X, int offsetX, int incX,
-                                   Buffer Ap);
+                                   Buffer Ap, int offsetAp);
 
     /*
      * ------------------------------------------------------

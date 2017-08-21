@@ -43,6 +43,12 @@ public class LAPACK {
     public static native double dlantr (int Order, int norm, int uplo, int diag, int M, int N,
                                         Buffer A, int offsetA, int lda);
 
+    public static native float slangb (int norm, int n, int kl, int ku,
+                                       Buffer A, int offsetA, int lda, Buffer work);
+
+    public static native double dlangb (int norm, int n, int kl, int ku,
+                                        Buffer A, int offsetA, int lda, Buffer work);
+
     public static native int slacpy (int Order, int uplo, int M, int N,
                                      Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
 
@@ -72,9 +78,16 @@ public class LAPACK {
 
     public static native int dlasrt (int id, int N, Buffer X, int offsetX);
 
+    //==============================================================================================
     /*
      * -----------------------------------------------------------------
      * Linear Equation Routines
+     * -----------------------------------------------------------------
+     */
+
+    /*
+     * -----------------------------------------------------------------
+     * Triangularization - TRF
      * -----------------------------------------------------------------
      */
 
@@ -84,17 +97,41 @@ public class LAPACK {
     public static native int dgetrf (int Order, int M, int N,
                                      Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv);
 
-    public static native int sgetri (int Order, int N,
+    public static native int sgbtrf (int Order, int M, int N, int kl, int ku,
                                      Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv);
 
-    public static native int dgetri (int Order, int N,
+    public static native int dgbtrf (int Order, int M, int N, int kl, int ku,
                                      Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv);
 
-    public static native int strtri (int Order, int uplo, int diag, int N,
-                                     Buffer A, int offsetA, int lda);
+    public static native int spotrf (int Order, int uplo, int N, Buffer A, int offsetA, int lda);
 
-    public static native int dtrtri (int Order, int uplo, int diag, int N,
-                                     Buffer A, int offsetA, int lda);
+    public static native int dpotrf (int Order, int uplo, int N, Buffer A, int offsetA, int lda);
+
+    public static native int spptrf (int Order, int uplo, int N, Buffer A, int offsetA);
+
+    public static native int dpptrf (int Order, int uplo, int N, Buffer A, int offsetA);
+
+    public static native int spbtrf (int Order, int uplo, int N, int kd, Buffer A, int offsetA, int lda);
+
+    public static native int dpbtrf (int Order, int uplo, int N, int kd, Buffer A, int offsetA, int lda);
+
+    public static native int ssytrf (int Order, int uplo, int N,
+                                     Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv);
+
+    public static native int dsytrf (int Order, int uplo, int N,
+                                     Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv);
+
+    public static native int ssptrf (int Order, int uplo, int N,
+                                     Buffer A, int offsetA, Buffer ipiv, int offsetIpiv);
+
+    public static native int dsptrf (int Order, int uplo, int N,
+                                     Buffer A, int offsetA, Buffer ipiv, int offsetIpiv);
+
+    /*
+     * -----------------------------------------------------------------
+     * Solving the system - TRS
+     * -----------------------------------------------------------------
+     */
 
     public static native int sgetrs (int Order, int trans, int N, int nrhs,
                                      Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
@@ -104,28 +141,71 @@ public class LAPACK {
                                      Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
                                      Buffer B, int offsetB, int ldb);
 
+    public static native int sgbtrs (int Order, int trans, int N, int kl, int ku, int nrhs,
+                                     Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
+                                     Buffer B, int offsetB, int ldb);
+
+    public static native int dgbtrs (int Order, int trans, int N, int kl, int ku, int nrhs,
+                                     Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
+                                     Buffer B, int offsetB, int ldb);
+
+    public static native int spotrs (int Order, int uplo, int N, int nrhs,
+                                     Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
+
+    public static native int dpotrs (int Order, int uplo, int N, int nrhs,
+                                     Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
+
+    public static native int spptrs (int Order, int uplo, int N, int nrhs,
+                                     Buffer A, int offsetA, Buffer B, int offsetB, int ldb);
+
+    public static native int dpptrs (int Order, int uplo, int N, int nrhs,
+                                     Buffer A, int offsetA, Buffer B, int offsetB, int ldb);
+
+    public static native int spbtrs (int Order, int uplo, int N, int kd, int nrhs,
+                                     Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
+
+    public static native int dpbtrs (int Order, int uplo, int N, int kd, int nrhs,
+                                     Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
+
+    public static native int ssytrs (int Order, int uplo, int N, int nrhs,
+                                     Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
+                                     Buffer B, int offsetB, int ldb);
+
+    public static native int dsytrs (int Order, int uplo, int N, int nrhs,
+                                     Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
+                                     Buffer B, int offsetB, int ldb);
+
+    public static native int ssptrs (int Order, int uplo, int N, int nrhs,
+                                     Buffer A, int offsetA, Buffer ipiv, int offsetIpiv,
+                                     Buffer B, int offsetB, int ldb);
+
+    public static native int dsptrs (int Order, int uplo, int N, int nrhs,
+                                     Buffer A, int offsetA, Buffer ipiv, int offsetIpiv,
+                                     Buffer B, int offsetB, int ldb);
+
     public static native int strtrs (int Order, int uplo, int trans, int diag, int N, int nrhs,
                                      Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
 
     public static native int dtrtrs (int Order, int uplo, int trans, int diag, int N, int nrhs,
                                      Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
 
-    public static native int sgesv (int Order, int N, int nrhs,
-                                    Buffer A, int offsetA, int lda,
-                                    Buffer ipiv, int offsetIpiv,
-                                    Buffer B, int offsetB, int ldb);
+    public static native int stptrs (int Order, int uplo, int trans, int diag, int N, int nrhs,
+                                     Buffer A, int offsetA, Buffer B, int offsetB, int ldb);
 
-    public static native int dgesv (int Order, int N, int nrhs,
-                                    Buffer A, int offsetA, int lda,
-                                    Buffer ipiv, int offsetIpiv,
-                                    Buffer B, int offsetB, int ldb);
+    public static native int dtptrs (int Order, int uplo, int trans, int diag, int N, int nrhs,
+                                     Buffer A, int offsetA, Buffer B, int offsetB, int ldb);
+
+    public static native int stbtrs (int Order, int uplo, int trans, int diag, int N, int kd, int nrhs,
+                                     Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
+
+    public static native int dtbtrs (int Order, int uplo, int trans, int diag, int N, int kd, int nrhs,
+                                     Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
 
     /*
      * -----------------------------------------------------------------
-     * Estimating Condition Number
+     * Estimating Condition Number - CON
      * -----------------------------------------------------------------
      */
-    // CON
 
     public static native int sgecon (int Order, int norm, int N,
                                      Buffer A, int offsetA, int lda, float anorm, Buffer rcond);
@@ -133,12 +213,153 @@ public class LAPACK {
     public static native int dgecon (int Order, int norm, int N,
                                      Buffer A, int offsetA, int lda, double anorm, Buffer rcond);
 
+    public static native int sgbcon (int Order, int norm, int N, int kl, int ku,
+                                     Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
+                                     float anorm, Buffer rcond);
+
+    public static native int dgbcon (int Order, int norm, int N, int kl, int ku,
+                                     Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
+                                     double anorm, Buffer rcond);
+
+    public static native int spocon (int Order, int uplo, int N,
+                                     Buffer A, int offsetA, int lda, float anorm, Buffer rcond);
+
+    public static native int dpocon (int Order, int uplo, int N,
+                                     Buffer A, int offsetA, int lda, double anorm, Buffer rcond);
+
+    public static native int sppcon (int Order, int uplo, int N,
+                                     Buffer A, int offsetA, float anorm, Buffer rcond);
+
+    public static native int dppcon (int Order, int uplo, int N,
+                                     Buffer A, int offsetA, double anorm, Buffer rcond);
+
+    public static native int spbcon (int Order, int uplo, int N, int kd,
+                                     Buffer A, int offsetA, int lda, float anorm, Buffer rcond);
+
+    public static native int dpbcon (int Order, int uplo, int N, int kd,
+                                     Buffer A, int offsetA, int lda, double anorm, Buffer rcond);
+
+    public static native int ssycon (int Order, int uplo, int N, Buffer A, int offsetA, int lda,
+                                     Buffer ipiv, int offsetIpiv, float anorm, Buffer rcond);
+
+    public static native int dsycon (int Order, int uplo, int N, Buffer A, int offsetA, int lda,
+                                     Buffer ipiv, int offsetIpiv, double anorm, Buffer rcond);
+
+    public static native int sspcon (int Order, int uplo, int N, Buffer A, int offsetA,
+                                     Buffer ipiv, int offsetIpiv, float anorm, Buffer rcond);
+
+    public static native int dspcon (int Order, int uplo, int N, Buffer A, int offsetA,
+                                     Buffer ipiv, int offsetIpiv, double anorm, Buffer rcond);
+
     public static native int strcon (int Order, int norm, int uplo, int diag, int N,
                                      Buffer A, int offsetA, int lda, Buffer rcond);
 
     public static native int dtrcon (int Order, int norm, int uplo, int diag, int N,
                                      Buffer A, int offsetA, int lda, Buffer rcond);
 
+    public static native int stpcon (int Order, int norm, int uplo, int diag, int N,
+                                     Buffer A, int offsetA, Buffer rcond);
+
+    public static native int dtpcon (int Order, int norm, int uplo, int diag, int N,
+                                     Buffer A, int offsetA, Buffer rcond);
+
+    public static native int stbcon (int Order, int norm, int uplo, int diag, int N, int kd,
+                                     Buffer A, int offsetA, int lda, Buffer rcond);
+
+    public static native int dtbcon (int Order, int norm, int uplo, int diag, int N, int kd,
+                                     Buffer A, int offsetA, int lda, Buffer rcond);
+
+    /*
+     * -----------------------------------------------------------------
+     * Inverse matrix - TRI
+     * -----------------------------------------------------------------
+     */
+
+    public static native int sgetri (int Order, int N,
+                                     Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv);
+
+    public static native int dgetri (int Order, int N,
+                                     Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv);
+
+    public static native int spotri (int Order, int uplo, int N, Buffer A, int offsetA, int lda);
+
+    public static native int dpotri (int Order, int uplo, int N, Buffer A, int offsetA, int lda);
+
+    public static native int spptri (int Order, int uplo, int N, Buffer A, int offsetA);
+
+    public static native int dpptri (int Order, int uplo, int N, Buffer A, int offsetA);
+
+    public static native int ssytri (int Order, int uplo, int N,
+                                     Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv);
+
+    public static native int dsytri (int Order, int uplo, int N,
+                                     Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv);
+
+    public static native int ssptri (int Order, int uplo, int N,
+                                     Buffer A, int offsetA, Buffer ipiv, int offsetIpiv);
+
+    public static native int dsptri (int Order, int uplo, int N,
+                                     Buffer A, int offsetA, Buffer ipiv, int offsetIpiv);
+
+    public static native int stptri (int Order, int uplo, int diag, int N, Buffer A, int offsetA);
+
+    public static native int dtptri (int Order, int uplo, int diag, int N, Buffer A, int offsetA);
+
+    /*
+     * -----------------------------------------------------------------
+     * Solve system of linear equations - SV
+     * -----------------------------------------------------------------
+     */
+
+    public static native int sgesv (int Order, int N, int nrhs, Buffer A, int offsetA, int lda,
+                                    Buffer ipiv, int offsetIpiv, Buffer B, int offsetB, int ldb);
+
+    public static native int dgesv (int Order, int N, int nrhs, Buffer A, int offsetA, int lda,
+                                    Buffer ipiv, int offsetIpiv, Buffer B, int offsetB, int ldb);
+
+    public static native int sgbsv (int Order, int N, int kl, int ku, int nrhs,
+                                    Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
+                                    Buffer B, int offsetB, int ldb);
+
+    public static native int dgbsv (int Order, int N, int kl, int ku, int nrhs,
+                                    Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
+                                    Buffer B, int offsetB, int ldb);
+
+    public static native int sposv (int Order, int uplo, int N, int nrhs,
+                                    Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
+
+    public static native int dposv (int Order, int uplo, int N, int nrhs,
+                                    Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
+
+    public static native int sppsv (int Order, int uplo, int N, int nrhs,
+                                    Buffer A, int offsetA, Buffer B, int offsetB, int ldb);
+
+    public static native int dppsv (int Order, int uplo, int N, int nrhs,
+                                    Buffer A, int offsetA, Buffer B, int offsetB, int ldb);
+
+    public static native int spbsv (int Order, int uplo, int N, int kd, int nrhs,
+                                    Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
+
+    public static native int dpbsv (int Order, int uplo, int N, int kd, int nrhs,
+                                    Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
+
+    public static native int ssysv (int Order, int uplo, int N, int nrhs,
+                                    Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
+                                    Buffer B, int offsetB, int ldb);
+
+    public static native int dsysv (int Order, int uplo, int N, int nrhs,
+                                    Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
+                                    Buffer B, int offsetB, int ldb);
+
+    public static native int sspsv (int Order, int uplo, int N, int nrhs,
+                                    Buffer A, int offsetA, Buffer ipiv, int offsetIpiv,
+                                    Buffer B, int offsetB, int ldb);
+
+    public static native int dspsv (int Order, int uplo, int N, int nrhs,
+                                    Buffer A, int offsetA, Buffer ipiv, int offsetIpiv,
+                                    Buffer B, int offsetB, int ldb);
+
+    //=============================================================================================
     /*
      * -----------------------------------------------------------------
      * Orthogonal Factorization Routines
