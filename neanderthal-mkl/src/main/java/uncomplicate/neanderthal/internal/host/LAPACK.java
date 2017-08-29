@@ -49,6 +49,30 @@ public class LAPACK {
     public static native double dlangb (int norm, int n, int kl, int ku,
                                         Buffer A, int offsetA, int lda, Buffer work);
 
+    public static native float slansb (int norm, int uplo, int n, int k,
+                                       Buffer A, int offsetA, int lda, Buffer work);
+
+    public static native double dlansb (int norm, int uplo, int n, int k,
+                                        Buffer A, int offsetA, int lda, Buffer work);
+
+    public static native float slantb (int norm, int uplo, int diag, int n, int k,
+                                       Buffer A, int offsetA, int lda, Buffer work);
+
+    public static native double dlantb (int norm, int uplo, int diag, int n, int k,
+                                        Buffer A, int offsetA, int lda, Buffer work);
+
+    public static native float slansp (int norm, int uplo, int n,
+                                       Buffer A, int offsetA, Buffer work);
+
+    public static native double dlansp (int norm, int uplo, int n,
+                                        Buffer A, int offsetA, Buffer work);
+
+    public static native float slantp (int norm, int uplo, int diag, int n,
+                                       Buffer A, int offsetA, Buffer work);
+
+    public static native double dlantp (int norm, int uplo, int diag, int n,
+                                        Buffer A, int offsetA, Buffer work);
+
     public static native int slacpy (int Order, int uplo, int M, int N,
                                      Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
 
@@ -300,6 +324,10 @@ public class LAPACK {
 
     public static native int dsptri (int Order, int uplo, int N,
                                      Buffer A, int offsetA, Buffer ipiv, int offsetIpiv);
+
+    public static native int strtri (int Order, int uplo, int diag, int N, Buffer A, int offsetA, int lda);
+
+    public static native int dtrtri (int Order, int uplo, int diag, int N, Buffer A, int offsetA, int lda);
 
     public static native int stptri (int Order, int uplo, int diag, int N, Buffer A, int offsetA);
 
