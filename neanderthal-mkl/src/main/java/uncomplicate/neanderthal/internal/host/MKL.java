@@ -64,4 +64,19 @@ public class MKL {
     public static native void dimatcopy(int ordering, int trans, int M, int N,
                                         double alpha, Buffer AB, int offsetAB, int lda, int ldb);
 
+    // ----------- Mathematical functions -----------------------------------------
+
+    public static native void vsmul (int N, Buffer X, int offsetX, Buffer Y, int offsetY,
+                                     Buffer Z, int offsetZ);
+    public static native void vdmul (int N, Buffer X, int offsetX, Buffer Y, int offsetY,
+                                     Buffer Z, int offsetZ);
+
+    public static native void vsinv (int N, Buffer X, int offsetX, Buffer Y, int offsetY);
+    public static native void vdinv (int N, Buffer X, int offsetX, Buffer Y, int offsetY);
+
+    public static native void vsdiv (int N, Buffer X, int offsetX, Buffer Y, int offsetY,
+                                     Buffer Z, int offsetZ);
+    public static native void vddiv (int N, Buffer X, int offsetX, Buffer Y, int offsetY,
+                                     Buffer Z, int offsetZ);
+
 }

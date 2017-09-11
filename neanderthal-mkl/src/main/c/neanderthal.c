@@ -1800,6 +1800,62 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgbtrf
 
 /*
  * -----------------------------------------------------------------
+ * GTTRF
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sgttrf
+(JNIEnv *env, jclass clazz, jint N, jobject D, jint offsetD, jobject ipiv, jint offsetIpiv) {
+
+    int n1 = (0 < N) ? N - 1 : 0;
+    float *cD = (float *) (*env)->GetDirectBufferAddress(env, D);
+    float *cd = cD + offsetD;
+    int *cipiv = (int *) (*env)->GetDirectBufferAddress(env, ipiv);
+    return LAPACKE_sgttrf(N, cd + (N + n1), cd, cd + N, cd + (N + n1 + n1), cipiv + offsetIpiv);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgttrf
+(JNIEnv *env, jclass clazz, jint N, jobject D, jint offsetD, jobject ipiv, jint offsetIpiv) {
+
+    int n1 = (0 < N) ? N - 1 : 0;
+    double *cD = (double *) (*env)->GetDirectBufferAddress(env, D);
+    double *cd = cD + offsetD;
+    int *cipiv = (int *) (*env)->GetDirectBufferAddress(env, ipiv);
+    return LAPACKE_dgttrf(N, cd + (N + n1), cd, cd + N, cd + (N + n1 + n1), cipiv + offsetIpiv);
+};
+
+/*
+ * -----------------------------------------------------------------
+ * DTTRFB
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sdttrfb
+(JNIEnv *env, jclass clazz, jint N, jobject D, jint offsetD) {
+
+    int info = 0;
+    int n = (int)N;
+    int n1 = (0 < N) ? N - 1 : 0;
+    float *cD = (float *) (*env)->GetDirectBufferAddress(env, D);
+    float *cd = cD + offsetD;
+    sdttrfb(&n, cd + (n + n1), cd, cd + n, &info);
+    return info;
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_ddttrfb
+(JNIEnv *env, jclass clazz, jint N, jobject D, jint offsetD) {
+
+    int info = 0;
+    int n = (int)N;
+    int n1 = (0 < N) ? N - 1 : 0;
+    double *cD = (double *) (*env)->GetDirectBufferAddress(env, D);
+    double *cd = cD + offsetD;
+    ddttrfb(&n, cd + (n + n1), cd, cd + n, &info);
+    return info;
+};
+
+/*
+ * -----------------------------------------------------------------
  * POTRF
  * -----------------------------------------------------------------
  */
@@ -1856,6 +1912,28 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dpbtrf
 
     double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
     return LAPACKE_dpbtrf(Order, (char)uplo, N, kd, cA + offsetA, lda);
+};
+
+/*
+ * -----------------------------------------------------------------
+ * PTTRF
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_spttrf
+(JNIEnv *env, jclass clazz, jint N, jobject D, jint offsetD) {
+
+    float *cD = (float *) (*env)->GetDirectBufferAddress(env, D);
+    float *cd = cD + offsetD;
+    return LAPACKE_spttrf(N, cd, cd + N);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dpttrf
+(JNIEnv *env, jclass clazz, jint N, jobject D, jint offsetD) {
+
+    double *cD = (double *) (*env)->GetDirectBufferAddress(env, D);
+    double *cd = cD + offsetD;
+    return LAPACKE_dpttrf(N, cd, cd + N);
 };
 
 /*
@@ -1965,6 +2043,76 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgbtrs
 
 /*
  * -----------------------------------------------------------------
+ * GTTRS
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sgttrs
+(JNIEnv *env, jclass clazz, jint Order, jint trans, jint N, jint nrhs,
+ jobject D, jint offsetD, jobject ipiv, jint offsetIpiv, jobject B, jint offsetB, jint ldb) {
+
+    int n1 = (0 < N) ? N - 1 : 0;
+    float *cD = (float *) (*env)->GetDirectBufferAddress(env, D);
+    float *cd = cD + offsetD;
+    float *cB = (float *) (*env)->GetDirectBufferAddress(env, B);
+    int *cipiv = (int *) (*env)->GetDirectBufferAddress(env, ipiv);
+    return LAPACKE_sgttrs(Order, (char)trans, N, nrhs, cd + (N + n1), cd, cd + N, cd + (N + n1 + n1),
+                          cipiv + offsetIpiv, cB + offsetB, ldb);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgttrs
+(JNIEnv *env, jclass clazz, jint Order, jint trans, jint N, jint nrhs,
+ jobject D, jint offsetD, jobject ipiv, jint offsetIpiv, jobject B, jint offsetB, jint ldb) {
+
+    int n1 = (0 < N) ? N - 1 : 0;
+    double *cD = (double *) (*env)->GetDirectBufferAddress(env, D);
+    double *cd = cD + offsetD;
+    double *cB = (double *) (*env)->GetDirectBufferAddress(env, B);
+    int *cipiv = (int *) (*env)->GetDirectBufferAddress(env, ipiv);
+    return LAPACKE_dgttrs(Order, (char)trans, N, nrhs, cd + (N + n1), cd, cd + N, cd + (N + n1 + n1),
+                          cipiv + offsetIpiv, cB + offsetB, ldb);
+};
+
+/*
+ * -----------------------------------------------------------------
+ * DTTRSB
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sdttrsb
+(JNIEnv *env, jclass clazz, jint trans, jint N, jint nrhs,
+ jobject D, jint offsetD, jobject B, jint offsetB, jint ldb) {
+
+    int info = 0;
+    int n = (int)N;
+    int n1 = (0 < N) ? N - 1 : 0;
+    char t = (char)trans;
+    int rhs = (int)nrhs;
+    float *cD = (float *) (*env)->GetDirectBufferAddress(env, D);
+    float *cd = cD + offsetD;
+    float *cB = (float *) (*env)->GetDirectBufferAddress(env, B);
+    sdttrsb(&t, &n, &rhs, cd + (N + n1), cd, cd + N, cB + offsetB, &ldb, &info);
+    return info;
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_ddttrsb
+(JNIEnv *env, jclass clazz, jint trans, jint N, jint nrhs,
+ jobject D, jint offsetD, jobject B, jint offsetB, jint ldb) {
+
+    int info = 0;
+    int n = (int)N;
+    int n1 = (0 < N) ? N - 1 : 0;
+    char t = (char)trans;
+    int rhs = (int)nrhs;
+    double *cD = (double *) (*env)->GetDirectBufferAddress(env, D);
+    double *cd = cD + offsetD;
+    double *cB = (double *) (*env)->GetDirectBufferAddress(env, B);
+    ddttrsb(&t, &n, &rhs, cd + (N + n1), cd, cd + N, cB + offsetB, &ldb, &info);
+    return info;
+};
+
+/*
+ * -----------------------------------------------------------------
  * POTRS
  * -----------------------------------------------------------------
  */
@@ -2059,6 +2207,32 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dsptrs
     double *cB = (double *) (*env)->GetDirectBufferAddress(env, B);
     int *cipiv = (int *) (*env)->GetDirectBufferAddress(env, ipiv);
     return LAPACKE_dsptrs(Order, (char)uplo, N, nrhs, cA + offsetA, cipiv + offsetIpiv, cB + offsetB, ldb);
+};
+
+/*
+ * -----------------------------------------------------------------
+ * PTTRS
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_spttrs
+(JNIEnv *env, jclass clazz, jint Order, jint N, jint nrhs,
+ jobject D, jint offsetD, jobject B, jint offsetB, jint ldb) {
+
+    float *cD = (float *) (*env)->GetDirectBufferAddress(env, D);
+    float *cd = cD + offsetD;
+    float *cB = (float *) (*env)->GetDirectBufferAddress(env, B);
+    return LAPACKE_spttrs(Order, N, nrhs, cd,  cd + N, cB + offsetB, ldb);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dpttrs
+(JNIEnv *env, jclass clazz, jint Order, jint N, jint nrhs,
+ jobject D, jint offsetD, jobject B, jint offsetB, jint ldb) {
+
+    double *cD = (double *) (*env)->GetDirectBufferAddress(env, D);
+    double *cd = cD + offsetD;
+    double *cB = (double *) (*env)->GetDirectBufferAddress(env, B);
+    return LAPACKE_dpttrs(Order, N, nrhs, cd, cd + N, cB + offsetB, ldb);
 };
 
 /*
@@ -2219,6 +2393,38 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgbcon
 
 /*
  * -----------------------------------------------------------------
+ * GTCON
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sgtcon
+(JNIEnv *env, jclass clazz, jint norm, jint N,
+ jobject D, jint offsetD, jobject ipiv, jint offsetIpiv, jfloat anorm, jobject rcond) {
+
+    int n1 = (0 < N) ? N - 1 : 0;
+    float *cD = (float *) (*env)->GetDirectBufferAddress(env, D);
+    float *crcond = (float *) (*env)->GetDirectBufferAddress(env, rcond);
+    float *cd = cD + offsetD;
+    int *cipiv = (int *) (*env)->GetDirectBufferAddress(env, ipiv);
+    return LAPACKE_sgtcon((char)norm, N, cd + (N + n1), cd, cd + N, cd + (N + n1 + n1),
+                          cipiv + offsetIpiv, anorm, crcond);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgtcon
+(JNIEnv *env, jclass clazz, jint norm, jint N,
+ jobject D, jint offsetD, jobject ipiv, jint offsetIpiv, jdouble anorm, jobject rcond) {
+
+    int n1 = (0 < N) ? N - 1 : 0;
+    double *cD = (double *) (*env)->GetDirectBufferAddress(env, D);
+    double *cd = cD + offsetD;
+    double *crcond = (double *) (*env)->GetDirectBufferAddress(env, rcond);
+    int *cipiv = (int *) (*env)->GetDirectBufferAddress(env, ipiv);
+    return LAPACKE_dgtcon((char)norm, N, cd + (N + n1), cd, cd + N, cd + (N + n1 + n1),
+                          cipiv + offsetIpiv, anorm, crcond);
+};
+
+/*
+ * -----------------------------------------------------------------
  * POCON
  * -----------------------------------------------------------------
  */
@@ -2311,6 +2517,30 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dtrcon
     double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
     double *crcond = (double *) (*env)->GetDirectBufferAddress(env, rcond);
     return LAPACKE_dtrcon(Order, (char)norm, (char)uplo, (char)diag, N, cA + offsetA, lda, crcond);
+};
+
+/*
+ * -----------------------------------------------------------------
+ * PTCON
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sptcon
+(JNIEnv *env, jclass clazz, jint N, jobject D, jint offsetD, jfloat anorm, jobject rcond) {
+
+    float *cD = (float *) (*env)->GetDirectBufferAddress(env, D);
+    float *cd = cD + offsetD;
+    float *crcond = (float *) (*env)->GetDirectBufferAddress(env, rcond);
+    return LAPACKE_sptcon(N, cd, cd + N, anorm, crcond);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dptcon
+(JNIEnv *env, jclass clazz, jint N, jobject D, jint offsetD, jdouble anorm, jobject rcond) {
+
+    double *cD = (double *) (*env)->GetDirectBufferAddress(env, D);
+    double *cd = cD + offsetD;
+    double *crcond = (double *) (*env)->GetDirectBufferAddress(env, rcond);
+    return LAPACKE_dptcon(N, cd, cd + N, anorm, crcond);
 };
 
 /*
@@ -2620,6 +2850,70 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgbsv
 
 /*
  * -----------------------------------------------------------------
+ * GTSV
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sgtsv
+(JNIEnv *env, jclass clazz, jint Order, jint N, jint nrhs,
+ jobject D, jint offsetD, jobject B, jint offsetB, jint ldb) {
+
+    int n1 = (0 < N) ? N - 1 : 0;
+    float *cD = (float *) (*env)->GetDirectBufferAddress(env, D);
+    float *cd = cD + offsetD;
+    float *cB = (float *) (*env)->GetDirectBufferAddress(env, B);
+    return LAPACKE_sgtsv(Order, N, nrhs, cd + (N + n1), cd, cd + N, cB + offsetB, ldb);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgtsv
+(JNIEnv *env, jclass clazz, jint Order, jint N, jint nrhs,
+ jobject D, jint offsetD, jobject B, jint offsetB, jint ldb) {
+
+    int n1 = (0 < N) ? N - 1 : 0;
+    double *cD = (double *) (*env)->GetDirectBufferAddress(env, D);
+    double *cd = cD + offsetD;
+    double *cB = (double *) (*env)->GetDirectBufferAddress(env, B);
+    return LAPACKE_dgtsv(Order, N, nrhs, cd + (N + n1), cd, cd + N, cB + offsetB, ldb);
+};
+
+/*
+ * -----------------------------------------------------------------
+ * DTSVB
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sdtsvb
+(JNIEnv *env, jclass clazz, jint N, jint nrhs,
+ jobject D, jint offsetD, jobject B, jint offsetB, jint ldb) {
+
+    int info = 0;
+    int n = (int)N;
+    int n1 = (0 < N) ? N - 1 : 0;
+    int rhs = (int)nrhs;
+    float *cD = (float *) (*env)->GetDirectBufferAddress(env, D);
+    float *cd = cD + offsetD;
+    float *cB = (float *) (*env)->GetDirectBufferAddress(env, B);
+    sdtsvb(&n, &rhs, cd + (N + n1), cd, cd + N, cB + offsetB, &ldb, &info);
+    return info;
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_ddtsvb
+(JNIEnv *env, jclass clazz, jint N, jint nrhs,
+ jobject D, jint offsetD, jobject B, jint offsetB, jint ldb) {
+
+    int info = 0;
+    int n = (int)N;
+    int n1 = (0 < N) ? N - 1 : 0;
+    int rhs = (int)nrhs;
+    double *cD = (double *) (*env)->GetDirectBufferAddress(env, D);
+    double *cd = cD + offsetD;
+    double *cB = (double *) (*env)->GetDirectBufferAddress(env, B);
+    ddtsvb(&n, &rhs, cd + (N + n1), cd, cd + N, cB + offsetB, &ldb, &info);
+    return info;
+};
+
+/*
+ * -----------------------------------------------------------------
  * POSV
  * -----------------------------------------------------------------
  */
@@ -2688,6 +2982,32 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dpbsv
     double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
     double *cB = (double *) (*env)->GetDirectBufferAddress(env, B);
     return LAPACKE_dpbsv(Order, (char)uplo, N, kd, nrhs, cA + offsetA, lda, cB + offsetB, ldb);
+};
+
+/*
+ * -----------------------------------------------------------------
+ * PTSV
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sptsv
+(JNIEnv *env, jclass clazz, jint Order, jint N, jint nrhs,
+ jobject D, jint offsetD, jobject B, jint offsetB, jint ldb) {
+
+    float *cD = (float *) (*env)->GetDirectBufferAddress(env, D);
+    float *cd = cD + offsetD;
+    float *cB = (float *) (*env)->GetDirectBufferAddress(env, B);
+    return LAPACKE_sptsv(Order, N, nrhs, cd, cd + N, cB + offsetB, ldb);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dptsv
+(JNIEnv *env, jclass clazz, jint Order, jint N, jint nrhs,
+ jobject D, jint offsetD, jobject B, jint offsetB, jint ldb) {
+
+    double *cD = (double *) (*env)->GetDirectBufferAddress(env, D);
+    double *cd = cD + offsetD;
+    double *cB = (double *) (*env)->GetDirectBufferAddress(env, B);
+    return LAPACKE_dptsv(Order, N, nrhs, cd, cd + N, cB + offsetB, ldb);
 };
 
 /*
@@ -3282,4 +3602,62 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgesvd
     double *cSuperb = (double *) (*env)->GetDirectBufferAddress(env, superb);
     return LAPACKE_dgesvd(Order, (char)jobu, (char)jobvt, M, N, cA + offsetA, lda, cS + offsetS,
                           cU + offsetU, ldu, cVT + offsetVT, ldvt, cSuperb + offsetSuperb);
+};
+
+// =========== MKL Vector Functions =============================================
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsmul
+(JNIEnv *env, jclass clazz, jint N,
+ jobject X, jint offsetX, jobject Y, jint offsetY, jobject Z, jint offsetZ) {
+
+    float *cX = (float *) (*env)->GetDirectBufferAddress(env, X);
+    float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
+    float *cZ = (float *) (*env)->GetDirectBufferAddress(env, Z);
+    vsMul(N, cX + offsetX, cY + offsetY, cZ + offsetZ);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdmul
+(JNIEnv *env, jclass clazz, jint N,
+ jobject X, jint offsetX, jobject Y, jint offsetY, jobject Z, jint offsetZ) {
+
+    double *cX = (double *) (*env)->GetDirectBufferAddress(env, X);
+    double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
+    double *cZ = (double *) (*env)->GetDirectBufferAddress(env, Z);
+    vdMul(N, cX + offsetX, cY + offsetY, cZ + offsetZ);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsdiv
+(JNIEnv *env, jclass clazz, jint N,
+ jobject X, jint offsetX, jobject Y, jint offsetY, jobject Z, jint offsetZ) {
+
+    float *cX = (float *) (*env)->GetDirectBufferAddress(env, X);
+    float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
+    float *cZ = (float *) (*env)->GetDirectBufferAddress(env, Z);
+    vsDiv(N, cX + offsetX, cY + offsetY, cZ + offsetZ);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vddiv
+(JNIEnv *env, jclass clazz, jint N,
+ jobject X, jint offsetX, jobject Y, jint offsetY, jobject Z, jint offsetZ) {
+
+    double *cX = (double *) (*env)->GetDirectBufferAddress(env, X);
+    double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
+    double *cZ = (double *) (*env)->GetDirectBufferAddress(env, Z);
+    vdDiv(N, cX + offsetX, cY + offsetY, cZ + offsetZ);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsinv
+(JNIEnv *env, jclass clazz, jint N, jobject X, jint offsetX, jobject Y, jint offsetY) {
+
+    float *cX = (float *) (*env)->GetDirectBufferAddress(env, X);
+    float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
+    vsInv(N, cX + offsetX, cY + offsetY);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdinv
+(JNIEnv *env, jclass clazz, jint N, jobject X, jint offsetX, jobject Y, jint offsetY) {
+
+    double *cX = (double *) (*env)->GetDirectBufferAddress(env, X);
+    double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
+    vdInv(N, cX + offsetX, cY + offsetY);
 };
