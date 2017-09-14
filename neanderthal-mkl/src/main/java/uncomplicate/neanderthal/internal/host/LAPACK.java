@@ -559,6 +559,22 @@ public class LAPACK {
     public static native int dgels (int Order, int trans, int M, int N, int nrhs,
                                     Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
 
+    public static native int sgglse (int Order, int M, int N, int p,
+                                     Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb,
+                                     Buffer C, int offsetC, Buffer D, int offsetD, Buffer X, int offsetX);
+
+    public static native int dgglse (int Order, int M, int N, int p,
+                                     Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb,
+                                     Buffer C, int offsetC, Buffer D, int offsetD, Buffer X, int offsetX);
+
+    public static native int sggglm (int Order, int M, int N, int p,
+                                     Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb,
+                                     Buffer D, int offsetD, Buffer X, int offsetX, Buffer Y, int offsetY);
+
+    public static native int dggglm (int Order, int M, int N, int p,
+                                     Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb,
+                                     Buffer D, int offsetD, Buffer X, int offsetX, Buffer Y, int offsetY);
+
     /*
      * -----------------------------------------------------------------
      * Non-Symmetric Eigenvalue Problem Routines
@@ -580,11 +596,11 @@ public class LAPACK {
      */
 
     public static native int sgebrd (int Order, int M, int N, Buffer a, int offsetA, int lda,
-                                     Buffer D, int offsetD, Buffer E, int offsetE,
+                                     Buffer D, int offsetD,
                                      Buffer tauq, int offsetTauq, Buffer taup, int offsetTaup);
 
     public static native int dgebrd (int Order, int M, int N, Buffer a, int offsetA, int lda,
-                                     Buffer D, int offsetD, Buffer E, int offsetE,
+                                     Buffer D, int offsetD,
                                      Buffer tauq, int offsetTauq, Buffer taup, int offsetTaup);
 
     public static native int sorgbr (int Order, int vect, int M, int N, int K,
@@ -594,12 +610,12 @@ public class LAPACK {
                                      Buffer A, int offsetA, int lda, Buffer tau, int offsetTau);
 
     public static native int sbdsqr (int Order, int uplo, int N, int ncvt, int nru, int ncc,
-                                     Buffer D, int offsetD, Buffer E, int offsetE,
+                                     Buffer D, int offsetD,
                                      Buffer VT, int offsetVT, int ldvt, Buffer U, int offsetU, int ldu,
                                      Buffer C, int offsetC, int ldc);
 
     public static native int dbdsqr (int Order, int uplo, int N, int ncvt, int nru, int ncc,
-                                     Buffer D, int offsetD, Buffer E, int offsetE,
+                                     Buffer D, int offsetD,
                                      Buffer VT, int offsetVT, int ldvt, Buffer U, int offsetU, int ldu,
                                      Buffer C, int offsetC, int ldc);
 
