@@ -98,6 +98,18 @@ public class LAPACK {
     public static native int dlaswp (int Order, int N, Buffer A, int offsetA, int lda, int k1, int k2,
                                      Buffer ipiv, int offsetIpiv, int incIpiv);
 
+    public static native int slapmr (int Order, boolean forward, int M, int N,
+                                     Buffer A, int offsetA, int lda, Buffer k, int offsetK);
+
+    public static native int dlapmr (int Order, boolean forward, int M, int N,
+                                     Buffer A, int offsetA, int lda, Buffer k, int offsetK);
+
+    public static native int slapmt (int Order, boolean forward, int M, int N,
+                                     Buffer A, int offsetA, int lda, Buffer k, int offsetK);
+
+    public static native int dlapmt (int Order, boolean forward, int M, int N,
+                                     Buffer A, int offsetA, int lda, Buffer k, int offsetK);
+
     public static native int slasrt (int id, int N, Buffer X, int offsetX);
 
     public static native int dlasrt (int id, int N, Buffer X, int offsetX);
@@ -474,6 +486,13 @@ public class LAPACK {
     public static native int dormqr(int Order, int side, int trans, int M, int N, int K,
                                     Buffer A, int offsetA, int lda, Buffer tau, int offsetTau,
                                     Buffer B, int offsetB, int ldb);
+
+    // QP3
+    public static native int sgeqp3 (int Order, int M, int N, Buffer A, int offsetA, int lda,
+                                     Buffer jpiv, int offsetJpiv, Buffer tau, int offsetTau);
+
+    public static native int dgeqp3 (int Order, int M, int N, Buffer A, int offsetA, int lda,
+                                     Buffer jpiv, int offsetJpiv, Buffer tau, int offsetTau);
 
     // QRFP
     public static native int sgeqrfp (int Order, int M, int N,
