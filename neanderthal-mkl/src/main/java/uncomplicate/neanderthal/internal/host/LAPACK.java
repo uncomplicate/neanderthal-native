@@ -110,6 +110,14 @@ public class LAPACK {
     public static native int dlapmt (int Order, boolean forward, int M, int N,
                                      Buffer A, int offsetA, int lda, Buffer k, int offsetK);
 
+    public static native int ssyconv (int Order, int uplo, int way, int N,
+                                      Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
+                                      Buffer e, int offsetE);
+
+    public static native int dsyconv (int Order, int uplo, int way, int N,
+                                      Buffer A, int offsetA, int lda, Buffer ipiv, int offsetIpiv,
+                                      Buffer e, int offsetE);
+
     public static native int slasrt (int id, int N, Buffer X, int offsetX);
 
     public static native int dlasrt (int id, int N, Buffer X, int offsetX);

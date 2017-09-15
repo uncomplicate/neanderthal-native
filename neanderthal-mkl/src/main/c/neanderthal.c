@@ -1772,6 +1772,33 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dlapmt
     return LAPACKE_dlapmt(Order, forward, M, N, cA + offsetA, lda, cK + offsetK);
 };
 
+/*
+ * -----------------------------------------------------------------
+ * SYCONV
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_ssyconv
+(JNIEnv *env, jclass clazz, jint Order, jint uplo, jint way, jint N,
+ jobject A, jint offsetA, jint lda, jobject ipiv, jint offsetIpiv, jobject e, jint offsetE) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    int *cIpiv = (int *) (*env)->GetDirectBufferAddress(env, ipiv);
+    float *cE = (float *) (*env)->GetDirectBufferAddress(env, e);
+    return LAPACKE_ssyconv(Order, (char)uplo, (char)way, N,
+                           cA + offsetA, lda, cIpiv + offsetIpiv, cE + offsetE);
+}
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dsyconv
+(JNIEnv *env, jclass clazz, jint Order, jint uplo, jint way, jint N,
+ jobject A, jint offsetA, jint lda, jobject ipiv, jint offsetIpiv, jobject e, jint offsetE) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    int *cIpiv = (int *) (*env)->GetDirectBufferAddress(env, ipiv);
+    double *cE = (double *) (*env)->GetDirectBufferAddress(env, e);
+    return LAPACKE_dsyconv(Order, (char)uplo, (char)way, N,
+                           cA + offsetA, lda, cIpiv + offsetIpiv, cE + offsetE);
+}
 
 /*
  * -----------------------------------------------------------------
