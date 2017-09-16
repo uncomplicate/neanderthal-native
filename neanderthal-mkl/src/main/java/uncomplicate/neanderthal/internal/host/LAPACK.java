@@ -73,12 +73,19 @@ public class LAPACK {
     public static native double dlantp (int norm, int uplo, int diag, int n,
                                         Buffer A, int offsetA, Buffer work);
 
+    public static native float slangt (int norm, int n, Buffer D, int offsetD);
+
+    public static native double dlangt (int norm, int n, Buffer D, int offsetD);
+
+    public static native float slanst (int norm, int n, Buffer D, int offsetD);
+
+    public static native double dlanst (int norm, int n, Buffer D, int offsetD);
+
     public static native int slacpy (int Order, int uplo, int M, int N,
                                      Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
 
     public static native int dlacpy (int Order, int uplo, int M, int N,
                                      Buffer A, int offsetA, int lda, Buffer B, int offsetB, int ldb);
-
 
     public static native int slaset (int Order, int uplo, int M, int N, float alpha, float beta,
                                      Buffer A, int offsetA, int lda);
@@ -91,6 +98,12 @@ public class LAPACK {
 
     public static native int dlascl (int Order, int type, int k1, int ku, double cfrom, double cto,
                                      int M, int N, Buffer A, int offsetA, int lda);
+
+    public static native void slascl2 (int M, int N,
+                                      Buffer D, int offsetD, Buffer X, int offsetX, int strideX);
+
+    public static native void dlascl2 (int M, int N,
+                                      Buffer D, int offsetD, Buffer X, int offsetX, int strideX);
 
     public static native int slaswp (int Order, int N, Buffer A, int offsetA, int lda, int k1, int k2,
                                      Buffer ipiv, int offsetIpiv, int incIpiv);
@@ -121,6 +134,22 @@ public class LAPACK {
     public static native int slasrt (int id, int N, Buffer X, int offsetX);
 
     public static native int dlasrt (int id, int N, Buffer X, int offsetX);
+
+    public static native void slagtm (int trans, int n, int nrhs,
+                                      float alpha, Buffer D, int offsetD, Buffer B, int offsetB, int ldb,
+                                      float beta,  Buffer C, int offsetC, int ldc);
+
+    public static native void dlagtm (int trans, int n, int nrhs,
+                                      double alpha, Buffer D, int offsetD, Buffer B, int offsetB, int ldb,
+                                      double beta,  Buffer C, int offsetC, int ldc);
+
+    public static native void slastm (int trans, int n, int nrhs,
+                                      float alpha, Buffer D, int offsetD, Buffer B, int offsetB, int ldb,
+                                      float beta,  Buffer C, int offsetC, int ldc);
+
+    public static native void dlastm (int trans, int n, int nrhs,
+                                      double alpha, Buffer D, int offsetD, Buffer B, int offsetB, int ldb,
+                                      double beta,  Buffer C, int offsetC, int ldc);
 
     //==============================================================================================
     /*
