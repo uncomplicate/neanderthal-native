@@ -3785,6 +3785,32 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgeev
                          cWR + offsetWR, cWI + offsetWI, cVL + offsetVL, ldvl, cVR + offsetVR, ldvr);
 };
 
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sgees
+(JNIEnv *env, jclass clazz, jint Order, jint jobvs, jint N, jobject A, jint offsetA, jint lda,
+ jobject WR, jint offsetWR, jobject WI, jint offsetWI, jobject VS, jint offsetVS, jint ldvs) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    float *cWR = (float *) (*env)->GetDirectBufferAddress(env, WR);
+    float *cWI = (float *) (*env)->GetDirectBufferAddress(env, WI);
+    float *cVS = (float *) (*env)->GetDirectBufferAddress(env, VS);
+    int sdim = 0;
+    return LAPACKE_sgees(Order, (char)jobvs, 'N', NULL, N, cA + offsetA, lda, &sdim,
+                         cWR + offsetWR, cWI + offsetWI, cVS + offsetVS, ldvs);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgees
+(JNIEnv *env, jclass clazz, jint Order, jint jobvs, jint N, jobject A, jint offsetA, jint lda,
+ jobject WR, jint offsetWR, jobject WI, jint offsetWI, jobject VS, jint offsetVS, jint ldvs) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    double *cWR = (double *) (*env)->GetDirectBufferAddress(env, WR);
+    double *cWI = (double *) (*env)->GetDirectBufferAddress(env, WI);
+    double *cVS = (double *) (*env)->GetDirectBufferAddress(env, VS);
+    int sdim = 0;
+    return LAPACKE_dgees(Order, (char)jobvs, 'N', NULL, N, cA + offsetA, lda, &sdim,
+                         cWR + offsetWR, cWI + offsetWI, cVS + offsetVS, ldvs);
+};
+
 /*
  * -----------------------------------------------------------------
  * Singular Value Decomposition Routines

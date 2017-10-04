@@ -4,7 +4,7 @@
 
     <groupId>uncomplicate</groupId>
     <artifactId>neanderthal-mkl</artifactId>
-    <version>0.16.0</version>
+    <version>0.17.0-SNAPSHOT</version>
     <packaging>nar</packaging>
 
     <name>Neanderthal JNI MKL Bindings</name>

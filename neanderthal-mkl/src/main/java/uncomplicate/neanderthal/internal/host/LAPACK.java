@@ -645,6 +645,14 @@ public class LAPACK {
                                     Buffer WR, int offsetWR, Buffer WI, int offsetWI,
                                     Buffer VL, int offsetVL, int ldvl, Buffer VR, int offsetVR, int ldvr);
 
+    public static native int sgees (int Order, int jobvs, int N, Buffer a, int offsetA, int lda,
+                                    Buffer WR, int offsetWR, Buffer WI, int offsetWI,
+                                    Buffer VS, int offsetVS, int ldvs);
+
+    public static native int dgees (int Order, int jobvs, int N, Buffer a, int offsetA, int lda,
+                                    Buffer WR, int offsetWR, Buffer WI, int offsetWI,
+                                    Buffer VS, int offsetVS, int ldvs);
+
     /*
      * -----------------------------------------------------------------
      * Singular Value Decomposition Routines
