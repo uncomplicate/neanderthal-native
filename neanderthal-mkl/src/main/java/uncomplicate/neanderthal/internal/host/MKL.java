@@ -86,10 +86,10 @@ public class MKL {
     public static native void vdAbs (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
 
     public static native void vsLinearFrac (int N, Buffer A, int offsetA, Buffer B, int offsetB,
-                                            float scaleA, float scaleB, float shiftA, float shiftB,
+                                            float scaleA, float shiftA, float scaleB, float shiftB,
                                             Buffer Y, int offsetY);
     public static native void vdLinearFrac (int N, Buffer A, int offsetA, Buffer B, int offsetB,
-                                            double scaleA, double scaleB, double shiftA, double shiftB,
+                                            double scaleA, double shiftA, double scaleB, double shiftB,
                                             Buffer Y, int offsetY);
 
     public static native void vsSqrt (int N, Buffer A, int offsetA, Buffer Y, int offsetY);

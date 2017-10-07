@@ -4033,7 +4033,7 @@ JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsLinearF
     float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
     float *cB = (float *) (*env)->GetDirectBufferAddress(env, B);
     float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
-    vsLinearFrac(N, cA + offsetA, cB + offsetB, scaleA, scaleB, shiftA, shiftB, cY + offsetY);
+    vsLinearFrac(N, cA + offsetA, cB + offsetB, scaleA, shiftA, scaleB, shiftB, cY + offsetY);
 };
 
 JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdLinearFrac
@@ -4043,7 +4043,7 @@ JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdLinearF
     double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
     double *cB = (double *) (*env)->GetDirectBufferAddress(env, B);
     double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
-    vdLinearFrac(N, cA + offsetA, cB + offsetB, scaleA, scaleB, shiftA, shiftB, cY + offsetY);
+    vdLinearFrac(N, cA + offsetA, cB + offsetB, scaleA, shiftA, scaleB, shiftB, cY + offsetY);
 };
 
 JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsSqrt
@@ -4449,6 +4449,54 @@ JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdTanh
     double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
     double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
     vdTanh(N, cA + offsetA, cY + offsetY);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsAcosh
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA, jobject Y, jint offsetY) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
+    vsAcosh(N, cA + offsetA, cY + offsetY);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdAcosh
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA, jobject Y, jint offsetY) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
+    vdAcosh(N, cA + offsetA, cY + offsetY);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsAsinh
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA, jobject Y, jint offsetY) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
+    vsAsinh(N, cA + offsetA, cY + offsetY);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdAsinh
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA, jobject Y, jint offsetY) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
+    vdAsinh(N, cA + offsetA, cY + offsetY);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsAtanh
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA, jobject Y, jint offsetY) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
+    vsAtanh(N, cA + offsetA, cY + offsetY);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdAtanh
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA, jobject Y, jint offsetY) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
+    vdAtanh(N, cA + offsetA, cY + offsetY);
 };
 
 JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsErf
