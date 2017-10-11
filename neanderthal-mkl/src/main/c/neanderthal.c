@@ -4046,6 +4046,47 @@ JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdLinearF
     vdLinearFrac(N, cA + offsetA, cB + offsetB, scaleA, shiftA, scaleB, shiftB, cY + offsetY);
 };
 
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsFmod
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA,
+ jobject B, jint offsetB, jobject Y, jint offsetY) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    float *cB = (float *) (*env)->GetDirectBufferAddress(env, B);
+    float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
+    vsFmod(N, cA + offsetA, cB + offsetB, cY + offsetY);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdFmod
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA,
+ jobject B, jint offsetB, jobject Y, jint offsetY) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    double *cB = (double *) (*env)->GetDirectBufferAddress(env, B);
+    double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
+    vdFmod(N, cA + offsetA, cB + offsetB, cY + offsetY);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsRemainder
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA,
+ jobject B, jint offsetB, jobject Y, jint offsetY) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    float *cB = (float *) (*env)->GetDirectBufferAddress(env, B);
+    float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
+    vsFmod(N, cA + offsetA, cB + offsetB, cY + offsetY);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdRemainder
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA,
+ jobject B, jint offsetB, jobject Y, jint offsetY) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    double *cB = (double *) (*env)->GetDirectBufferAddress(env, B);
+    double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
+    vdRemainder(N, cA + offsetA, cB + offsetB, cY + offsetY);
+};
+
+
 JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsSqrt
 (JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA, jobject Y, jint offsetY) {
 
@@ -4741,4 +4782,44 @@ JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdFrac
     double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
     double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
     vdFrac(N, cA + offsetA, cY + offsetY);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsFmax
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA,
+ jobject Y, jint offsetY, jobject Z, jint offsetZ) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
+    float *cZ = (float *) (*env)->GetDirectBufferAddress(env, Z);
+    vsFmax(N, cA + offsetA, cY + offsetY, cZ + offsetZ);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdFmax
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA,
+ jobject Y, jint offsetY, jobject Z, jint offsetZ) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
+    double *cZ = (double *) (*env)->GetDirectBufferAddress(env, Z);
+    vdFmax(N, cA + offsetA, cY + offsetY, cZ + offsetZ);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsFmin
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA,
+ jobject Y, jint offsetY, jobject Z, jint offsetZ) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
+    float *cZ = (float *) (*env)->GetDirectBufferAddress(env, Z);
+    vsFmin(N, cA + offsetA, cY + offsetY, cZ + offsetZ);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdFmin
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA,
+ jobject Y, jint offsetY, jobject Z, jint offsetZ) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
+    double *cZ = (double *) (*env)->GetDirectBufferAddress(env, Z);
+    vdFmin(N, cA + offsetA, cY + offsetY, cZ + offsetZ);
 };

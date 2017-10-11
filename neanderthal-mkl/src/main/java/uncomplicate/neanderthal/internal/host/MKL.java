@@ -92,6 +92,16 @@ public class MKL {
                                             double scaleA, double shiftA, double scaleB, double shiftB,
                                             Buffer Y, int offsetY);
 
+    public static native void vsFmod (int N, Buffer A, int offsetA, Buffer B, int offsetB,
+                                      Buffer Y, int offsetY);
+    public static native void vdFmod (int N, Buffer A, int offsetA, Buffer B, int offsetB,
+                                      Buffer Y, int offsetY);
+
+    public static native void vsRemainder (int N, Buffer A, int offsetA, Buffer B, int offsetB,
+                                           Buffer Y, int offsetY);
+    public static native void vdRemainder (int N, Buffer A, int offsetA, Buffer B, int offsetB,
+                                           Buffer Y, int offsetY);
+
     public static native void vsSqrt (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
     public static native void vdSqrt (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
 
@@ -227,5 +237,15 @@ public class MKL {
 
     public static native void vsFrac (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
     public static native void vdFrac (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
+
+    public static native void vsFmax (int N, Buffer A, int offsetA, Buffer B, int offsetB,
+                                      Buffer Y, int offsetY);
+    public static native void vdFmax (int N, Buffer A, int offsetA, Buffer B, int offsetB,
+                                      Buffer Y, int offsetY);
+
+    public static native void vsFmin (int N, Buffer A, int offsetA, Buffer B, int offsetB,
+                                      Buffer Y, int offsetY);
+    public static native void vdFmin (int N, Buffer A, int offsetA, Buffer B, int offsetB,
+                                      Buffer Y, int offsetY);
 
 }
