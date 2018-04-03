@@ -139,12 +139,12 @@ public class CBLAS {
     public static native void srotm(int N,
                                     Buffer X, int offsetX, int incX,
                                     Buffer Y, int offsetY, int incY,
-                                    Buffer param);
+                                    Buffer param, int offsetParam);
 
     public static native void drotm(int N,
                                     Buffer X, int offsetX, int incX,
                                     Buffer Y, int offsetY, int incY,
-                                    Buffer param);
+                                    Buffer param, int offsetParam);
 
     /*
      * ------------------------------------------------------
@@ -153,10 +153,10 @@ public class CBLAS {
      */
 
     public static native void srotmg(Buffer d1d2xy, int offset_d1d2xy, int inc_d1d2xy,
-                                     Buffer param);
+                                     Buffer param, int offsetParam);
 
     public static native void drotmg(Buffer d1d2xy, int offset_d1d2xy, int inc_d1d2xy,
-                                     Buffer param);
+                                     Buffer param, int offsetParam);
 
     /*
      * ------------------------------------------------------

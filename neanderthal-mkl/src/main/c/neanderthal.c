@@ -359,24 +359,24 @@ JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_CBLAS_srotm
 (JNIEnv *env, jclass clazz, jint N,
  jobject X, jint offsetX, jint incX,
  jobject Y, jint offsetY, jint incY,
- jobject param) {
+ jobject param, jint offsetParam) {
 
     float *cX = (float *) (*env)->GetDirectBufferAddress(env, X);
     float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
     float *c_param = (float *) (*env)->GetDirectBufferAddress(env, param);
-    cblas_srotm(N, cX + offsetX, incX, cY + offsetY, incY, c_param);
+    cblas_srotm(N, cX + offsetX, incX, cY + offsetY, incY, c_param + offsetParam);
 };
 
 JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_CBLAS_drotm
 (JNIEnv *env, jclass clazz, jint N,
  jobject X, jint offsetX, jint incX,
  jobject Y, jint offsetY, jint incY,
- jobject param) {
+ jobject param, jint offsetParam) {
 
     double *cX = (double *) (*env)->GetDirectBufferAddress(env, X);
     double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
     double *c_param = (double *) (*env)->GetDirectBufferAddress(env, param);
-    cblas_drotm(N, cX + offsetX, incX, cY + offsetY, incY, c_param);
+    cblas_drotm(N, cX + offsetX, incX, cY + offsetY, incY, c_param + offsetParam);
 };
 
 /*
@@ -388,20 +388,22 @@ JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_CBLAS_drotm
 JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_CBLAS_srotmg
 (JNIEnv *env, jclass clazz,
  jobject d1d2xy, jint offset_d1d2xy, jint inc_d1d2xy,
- jobject param) {
+ jobject param, jint offsetParam) {
 
     float *c_d1d2xy = (float *) (*env)->GetDirectBufferAddress(env, d1d2xy) + offset_d1d2xy;
     float *c_param = (float *) (*env)->GetDirectBufferAddress(env, param);
-    cblas_srotmg(c_d1d2xy, c_d1d2xy + inc_d1d2xy, c_d1d2xy + 2 * inc_d1d2xy, c_d1d2xy[3*inc_d1d2xy], c_param);
+    cblas_srotmg(c_d1d2xy, c_d1d2xy + inc_d1d2xy, c_d1d2xy + 2 * inc_d1d2xy, c_d1d2xy[3*inc_d1d2xy],
+                 c_param + offsetParam);
 };
 
 JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_CBLAS_drotmg
 (JNIEnv *env, jclass clazz, jobject d1d2xy, jint offset_d1d2xy, jint inc_d1d2xy,
- jobject param) {
+ jobject param, jint offsetParam) {
 
     double *c_d1d2xy = (double *) (*env)->GetDirectBufferAddress(env, d1d2xy) + offset_d1d2xy;
     double *c_param = (double *) (*env)->GetDirectBufferAddress(env, param);
-    cblas_drotmg(c_d1d2xy, c_d1d2xy + inc_d1d2xy, c_d1d2xy + 2 * inc_d1d2xy, c_d1d2xy[3*inc_d1d2xy], c_param);
+    cblas_drotmg(c_d1d2xy, c_d1d2xy + inc_d1d2xy, c_d1d2xy + 2 * inc_d1d2xy, c_d1d2xy[3*inc_d1d2xy],
+                 c_param + offsetParam);
 };
 
 /*
