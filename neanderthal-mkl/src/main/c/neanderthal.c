@@ -3938,6 +3938,38 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgesvd
                           cU + offsetU, ldu, cVT + offsetVT, ldvt, cSuperb + offsetSuperb);
 };
 
+/*
+ * -----------------------------------------------------------------
+ * GESDD
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_sgesdd
+(JNIEnv *env, jclass clazz, jint Order, jint jobz, jint M, jint N,
+ jobject A, jint offsetA, jint lda, jobject S, jint offsetS, jobject U, jint offsetU, jint ldu,
+ jobject VT, jint offsetVT, jint ldvt) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    float *cS = (float *) (*env)->GetDirectBufferAddress(env, S);
+    float *cU = (float *) (*env)->GetDirectBufferAddress(env, U);
+    float *cVT = (float *) (*env)->GetDirectBufferAddress(env, VT);
+    return LAPACKE_sgesdd(Order, (char)jobz, M, N, cA + offsetA, lda, cS + offsetS,
+                          cU + offsetU, ldu, cVT + offsetVT, ldvt);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgesdd
+(JNIEnv *env, jclass clazz, jint Order, jint jobz, jint M, jint N,
+ jobject A, jint offsetA, jint lda, jobject S, jint offsetS, jobject U, jint offsetU, jint ldu,
+ jobject VT, jint offsetVT, jint ldvt) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    double *cS = (double *) (*env)->GetDirectBufferAddress(env, S);
+    double *cU = (double *) (*env)->GetDirectBufferAddress(env, U);
+    double *cVT = (double *) (*env)->GetDirectBufferAddress(env, VT);
+    return LAPACKE_dgesdd(Order, (char)jobz, M, N, cA + offsetA, lda, cS + offsetS,
+                          cU + offsetU, ldu, cVT + offsetVT, ldvt);
+};
+
 // =========== MKL Vector Functions =============================================
 
 JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsSqr

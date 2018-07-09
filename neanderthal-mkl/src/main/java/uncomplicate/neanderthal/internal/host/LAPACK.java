@@ -693,4 +693,12 @@ public class LAPACK {
                                      Buffer U, int offsetU, int ldu, Buffer VT, int offsetVT, int ldvt,
                                      Buffer superb, int offsetSuperb);
 
+    public static native int sgesdd (int Order, int jobz, int M, int N,
+                                     Buffer A, int offsetA, int lda, Buffer S, int offsetS,
+                                     Buffer U, int offsetU, int ldu, Buffer VT, int offsetVT, int ldvt);
+
+    public static native int dgesdd (int Order, int jobz, int M, int N,
+                                     Buffer A, int offsetA, int lda, Buffer S, int offsetS,
+                                     Buffer U, int offsetU, int ldu, Buffer VT, int offsetVT, int ldvt);
+
 }
