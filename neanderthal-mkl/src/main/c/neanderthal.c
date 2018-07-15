@@ -3814,6 +3814,48 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dgees
 
 /*
  * -----------------------------------------------------------------
+ * Symmetric Eigenvalue Problem Routines
+ * -----------------------------------------------------------------
+ */
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_ssyev
+(JNIEnv *env, jclass clazz, jint Order, jint jobz, jint uplo, jint N,
+ jobject A, jint offsetA, jint lda, jobject W, jint offsetW) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    float *cW = (float *) (*env)->GetDirectBufferAddress(env, W);
+    return LAPACKE_ssyev(Order, (char)jobz, (char)uplo, N, cA + offsetA, lda, cW + offsetW);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dsyev
+(JNIEnv *env, jclass clazz, jint Order, jint jobz, jint uplo, jint N,
+ jobject A, jint offsetA, jint lda, jobject W, jint offsetW) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    double *cW = (double *) (*env)->GetDirectBufferAddress(env, W);
+    return LAPACKE_dsyev(Order, (char)jobz, (char)uplo, N, cA + offsetA, lda, cW + offsetW);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_ssyevd
+(JNIEnv *env, jclass clazz, jint Order, jint jobz, jint uplo, jint N,
+ jobject A, jint offsetA, jint lda, jobject W, jint offsetW) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    float *cW = (float *) (*env)->GetDirectBufferAddress(env, W);
+    return LAPACKE_ssyevd(Order, (char)jobz, (char)uplo, N, cA + offsetA, lda, cW + offsetW);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dsyevd
+(JNIEnv *env, jclass clazz, jint Order, jint jobz, jint uplo, jint N,
+ jobject A, jint offsetA, jint lda, jobject W, jint offsetW) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    double *cW = (double *) (*env)->GetDirectBufferAddress(env, W);
+    return LAPACKE_dsyevd(Order, (char)jobz, (char)uplo, N, cA + offsetA, lda, cW + offsetW);
+};
+
+/*
+ * -----------------------------------------------------------------
  * Singular Value Decomposition Routines
  * -----------------------------------------------------------------
  */

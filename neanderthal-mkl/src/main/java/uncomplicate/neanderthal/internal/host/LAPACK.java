@@ -655,6 +655,36 @@ public class LAPACK {
 
     /*
      * -----------------------------------------------------------------
+     * Symmetric Eigenvalue Problem Routines
+     * -----------------------------------------------------------------
+     */
+
+    public static native int ssyev (int Order, int jobz, int uplo, int N,
+                                    Buffer a, int offsetA, int lda, Buffer W, int offsetW);
+
+    public static native int dsyev (int Order, int jobz, int uplo, int N,
+                                    Buffer a, int offsetA, int lda, Buffer W, int offsetW);
+
+    public static native int ssyevd (int Order, int jobz, int uplo, int N,
+                                     Buffer a, int offsetA, int lda, Buffer W, int offsetW);
+
+    public static native int dsyevd (int Order, int jobz, int uplo, int N,
+                                     Buffer a, int offsetA, int lda, Buffer W, int offsetW);
+
+    public static native int ssyevr (int Order, int jobz, int range, int uplo, int N,
+                                     Buffer a, int offsetA, int lda,
+                                     float vl, float vu, int il, int iu, float abstol,
+                                     Buffer W, int offsetW, Buffer Z, int offsetZ,
+                                     Buffer isuppz, int offsetIsuppz);
+
+    public static native int dsyevr (int Order, int jobz, int range, int uplo, int N,
+                                     Buffer a, int offsetA, int lda,
+                                     double vl, double vu, int il, int iu, double abstol,
+                                     Buffer W, int offsetW, Buffer Z, int offsetZ,
+                                     Buffer isuppz, int offsetIsuppz);
+
+    /*
+     * -----------------------------------------------------------------
      * Singular Value Decomposition Routines
      * -----------------------------------------------------------------
      */
