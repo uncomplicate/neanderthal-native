@@ -3854,6 +3854,38 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dsyevd
     return LAPACKE_dsyevd(Order, (char)jobz, (char)uplo, N, cA + offsetA, lda, cW + offsetW);
 };
 
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_ssyevr
+(JNIEnv *env, jclass clazz, jint Order, jint jobz, jint range, jint uplo, jint N,
+ jobject A, jint offsetA, jint lda, jfloat vl, jfloat vu, jint il, jint iu, jfloat abstol,
+ jobject M, jobject W, jint offsetW, jobject Z, jint offsetZ, jint ldz,
+ jobject isuppz, jint offsetIsuppz) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    int *cM = (int *) (*env)->GetDirectBufferAddress(env, M);
+    float *cW = (float *) (*env)->GetDirectBufferAddress(env, W);
+    float *cZ = (float *) (*env)->GetDirectBufferAddress(env, Z);
+    int *cIsuppz = (int *) (*env)->GetDirectBufferAddress(env, isuppz);
+    return LAPACKE_ssyevr(Order, (char)jobz, (char)range, (char)uplo, N,
+                          cA + offsetA, lda, vl, vu, il, iu, abstol,
+                          cM, cW + offsetW, cZ + offsetZ, ldz, cIsuppz + offsetIsuppz);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_LAPACK_dsyevr
+(JNIEnv *env, jclass clazz, jint Order, jint jobz, jint range, jint uplo, jint N,
+ jobject A, jint offsetA, jint lda, jdouble vl, jdouble vu, jint il, jint iu, jdouble abstol,
+ jobject M, jobject W, jint offsetW, jobject Z, jint offsetZ, jint ldz,
+ jobject isuppz, jint offsetIsuppz) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    int *cM = (int *) (*env)->GetDirectBufferAddress(env, M);
+    double *cW = (double *) (*env)->GetDirectBufferAddress(env, W);
+    double *cZ = (double *) (*env)->GetDirectBufferAddress(env, Z);
+    int *cIsuppz = (int *) (*env)->GetDirectBufferAddress(env, isuppz);
+    return LAPACKE_dsyevr(Order, (char)jobz, (char)range, (char)uplo, N,
+                          cA + offsetA, lda, vl, vu, il, iu, abstol,
+                          cM, cW + offsetW, cZ + offsetZ, ldz, cIsuppz + offsetIsuppz);
+};
+
 /*
  * -----------------------------------------------------------------
  * Singular Value Decomposition Routines

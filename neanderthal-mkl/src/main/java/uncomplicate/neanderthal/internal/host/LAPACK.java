@@ -673,14 +673,14 @@ public class LAPACK {
 
     public static native int ssyevr (int Order, int jobz, int range, int uplo, int N,
                                      Buffer a, int offsetA, int lda,
-                                     float vl, float vu, int il, int iu, float abstol,
-                                     Buffer W, int offsetW, Buffer Z, int offsetZ,
+                                     float vl, float vu, int il, int iu, float abstol, Buffer M,
+                                     Buffer W, int offsetW, Buffer Z, int offsetZ, int ldz,
                                      Buffer isuppz, int offsetIsuppz);
 
     public static native int dsyevr (int Order, int jobz, int range, int uplo, int N,
                                      Buffer a, int offsetA, int lda,
-                                     double vl, double vu, int il, int iu, double abstol,
-                                     Buffer W, int offsetW, Buffer Z, int offsetZ,
+                                     double vl, double vu, int il, int iu, double abstol, Buffer M,
+                                     Buffer W, int offsetW, Buffer Z, int offsetZ, int ldz,
                                      Buffer isuppz, int offsetIsuppz);
 
     /*
