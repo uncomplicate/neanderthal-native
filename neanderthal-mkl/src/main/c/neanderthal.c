@@ -4931,3 +4931,55 @@ JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdFmin
     double *cZ = (double *) (*env)->GetDirectBufferAddress(env, Z);
     vdFmin(N, cA + offsetA, cY + offsetY, cZ + offsetZ);
 };
+
+// =========== MKL RNG Functions =============================================
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vslNewStreamARS5
+(JNIEnv *env, jclass clazz, jint seed, jobject stream) {
+
+    VSLStreamStatePtr *cStream = (VSLStreamStatePtr *) (*env)->GetDirectBufferAddress(env, stream);
+    return vslNewStream(cStream, VSL_BRNG_ARS5, (uint)seed);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vslDeleteStream
+(JNIEnv *env, jclass clazz, jobject stream) {
+
+    VSLStreamStatePtr *cStream = (VSLStreamStatePtr *) (*env)->GetDirectBufferAddress(env, stream);
+    return vslDeleteStream(cStream);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsRngGaussian
+(JNIEnv *env, jclass clazz, jobject stream, jint n, jobject res, jobject params) {
+
+    VSLStreamStatePtr *cStream = (VSLStreamStatePtr *) (*env)->GetDirectBufferAddress(env, stream);
+    float *cRes = (float *) (*env)->GetDirectBufferAddress(env, res);
+    float *cParams = (float *) (*env)->GetDirectBufferAddress(env, params);
+    return vsRngGaussian(VSL_RNG_METHOD_GAUSSIAN_BOXMULLER2, *cStream, n, cRes, cParams[0], cParams[1]);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdRngGaussian
+(JNIEnv *env, jclass clazz, jobject stream, jint n, jobject res, jobject params) {
+
+    VSLStreamStatePtr *cStream = (VSLStreamStatePtr *) (*env)->GetDirectBufferAddress(env, stream);
+    double *cRes = (double *) (*env)->GetDirectBufferAddress(env, res);
+    double *cParams = (double *) (*env)->GetDirectBufferAddress(env, params);
+    return vdRngGaussian(VSL_RNG_METHOD_GAUSSIAN_BOXMULLER2, *cStream, n, cRes, cParams[0], cParams[1]);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsRngUniform
+(JNIEnv *env, jclass clazz, jobject stream, jint n, jobject res, jobject params) {
+
+    VSLStreamStatePtr *cStream = (VSLStreamStatePtr *) (*env)->GetDirectBufferAddress(env, stream);
+    float *cRes = (float *) (*env)->GetDirectBufferAddress(env, res);
+    float *cParams = (float *) (*env)->GetDirectBufferAddress(env, params);
+    return vsRngUniform(VSL_RNG_METHOD_UNIFORM_STD, *cStream, n, cRes, cParams[0], cParams[1]);
+};
+
+JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdRngUniform
+(JNIEnv *env, jclass clazz, jobject stream, jint n, jobject res, jobject params) {
+
+    VSLStreamStatePtr *cStream = (VSLStreamStatePtr *) (*env)->GetDirectBufferAddress(env, stream);
+    double *cRes = (double *) (*env)->GetDirectBufferAddress(env, res);
+    double *cParams = (double *) (*env)->GetDirectBufferAddress(env, params);
+    return vdRngUniform(VSL_RNG_METHOD_UNIFORM_STD, *cStream, n, cRes, cParams[0], cParams[1]);
+};

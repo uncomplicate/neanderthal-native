@@ -248,4 +248,15 @@ public class MKL {
     public static native void vdFmin (int N, Buffer A, int offsetA, Buffer B, int offsetB,
                                       Buffer Y, int offsetY);
 
+    // ========================= RNG functions ========================================
+
+    public static native int vslNewStreamARS5 (int seed, Buffer stream);
+    public static native int vslDeleteStream (Buffer stream);
+
+    public static native int vsRngGaussian (Buffer stream, int n, Buffer res, Buffer params);
+    public static native int vdRngGaussian (Buffer stream, int n, Buffer res, Buffer params);
+
+    public static native int vsRngUniform (Buffer stream, int n, Buffer res, Buffer params);
+    public static native int vdRngUniform (Buffer stream, int n, Buffer res, Buffer params);
+
 }
