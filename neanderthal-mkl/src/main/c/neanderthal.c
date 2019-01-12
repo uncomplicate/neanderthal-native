@@ -4938,7 +4938,7 @@ JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vslNewStr
 (JNIEnv *env, jclass clazz, jint seed, jobject stream) {
 
     VSLStreamStatePtr *cStream = (VSLStreamStatePtr *) (*env)->GetDirectBufferAddress(env, stream);
-    return vslNewStream(cStream, VSL_BRNG_ARS5, (uint)seed);
+    return vslNewStream(cStream, VSL_BRNG_ARS5, (unsigned int)seed);
 };
 
 JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vslDeleteStream
