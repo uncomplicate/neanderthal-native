@@ -4,7 +4,7 @@
   <groupId>uncomplicate</groupId>
   <artifactId>neanderthal-native</artifactId>
   <name>Neanderthal JNI BLAS/LAPACK Bindings</name>
-  <version>0.23.0-SNAPSHOT</version>
+  <version>0.23.0</version>
   <description>Uberjar of JNI Bindings for native BLAS and LAPACK library.</description>
   <url>https://github.com/uncomplicate/neanderthal-native</url>
   <issueManagement>
@@ -76,7 +76,7 @@
   </distributionManagement>
   <properties>
     <skipTests>true</skipTests>
-    <neanderthal-mkl-version>0.23.0-SNAPSHOT</neanderthal-mkl-version>
+    <neanderthal-mkl-version>0.23.0</neanderthal-mkl-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>
