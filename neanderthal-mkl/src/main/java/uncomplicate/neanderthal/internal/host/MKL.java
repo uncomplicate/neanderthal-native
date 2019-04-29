@@ -248,6 +248,11 @@ public class MKL {
     public static native void vdFmin (int N, Buffer A, int offsetA, Buffer B, int offsetB,
                                       Buffer Y, int offsetY);
 
+    public static native void vsCopySign (int N, Buffer A, int offsetA, Buffer B, int offsetB,
+                                          Buffer Y, int offsetY);
+    public static native void vdCopySign (int N, Buffer A, int offsetA, Buffer B, int offsetB,
+                                          Buffer Y, int offsetY);
+
     // ========================= RNG functions ========================================
 
     public static native int vslNewStreamARS5 (int seed, Buffer stream);

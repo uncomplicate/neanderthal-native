@@ -4932,6 +4932,26 @@ JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdFmin
     vdFmin(N, cA + offsetA, cY + offsetY, cZ + offsetZ);
 };
 
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vsCopySign
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA,
+ jobject Y, jint offsetY, jobject Z, jint offsetZ) {
+
+    float *cA = (float *) (*env)->GetDirectBufferAddress(env, A);
+    float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
+    float *cZ = (float *) (*env)->GetDirectBufferAddress(env, Z);
+    vsCopySign(N, cA + offsetA, cY + offsetY, cZ + offsetZ);
+};
+
+JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vdCopySign
+(JNIEnv *env, jclass clazz, jint N, jobject A, jint offsetA,
+ jobject Y, jint offsetY, jobject Z, jint offsetZ) {
+
+    double *cA = (double *) (*env)->GetDirectBufferAddress(env, A);
+    double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
+    double *cZ = (double *) (*env)->GetDirectBufferAddress(env, Z);
+    vdCopySign(N, cA + offsetA, cY + offsetY, cZ + offsetZ);
+};
+
 // =========== MKL RNG Functions =============================================
 
 JNIEXPORT jint JNICALL Java_uncomplicate_neanderthal_internal_host_MKL_vslNewStreamARS5
