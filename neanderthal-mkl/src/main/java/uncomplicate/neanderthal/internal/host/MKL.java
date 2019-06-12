@@ -258,10 +258,14 @@ public class MKL {
     public static native int vslNewStreamARS5 (int seed, Buffer stream);
     public static native int vslDeleteStream (Buffer stream);
 
-    public static native int vsRngGaussian (Buffer stream, int n, Buffer res, Buffer params);
-    public static native int vdRngGaussian (Buffer stream, int n, Buffer res, Buffer params);
+    public static native int vsRngGaussian (Buffer stream, int n, Buffer x, int offsetX,
+                                            float lower, float upper);
+    public static native int vdRngGaussian (Buffer stream, int n, Buffer x, int offsetX,
+                                            double lower, double upper);
 
-    public static native int vsRngUniform (Buffer stream, int n, Buffer res, Buffer params);
-    public static native int vdRngUniform (Buffer stream, int n, Buffer res, Buffer params);
+    public static native int vsRngUniform (Buffer stream, int n, Buffer x, int offsetX,
+                                           float mu, float sigma);
+    public static native int vdRngUniform (Buffer stream, int n, Buffer x, int offsetX,
+                                           double mu, double sigma);
 
 }
