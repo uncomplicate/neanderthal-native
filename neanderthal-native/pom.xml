@@ -4,13 +4,13 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <neanderthal-mkl-version>0.25.0</neanderthal-mkl-version>
+        <neanderthal-mkl-version>0.30.0-SNAPSHOT</neanderthal-mkl-version>
         <skipTests>true</skipTests>
     </properties>
 
     <groupId>uncomplicate</groupId>
     <artifactId>neanderthal-native</artifactId>
-    <version>0.25.0</version>
+    <version>0.30.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Neanderthal JNI BLAS/LAPACK Bindings</name>
@@ -64,7 +64,7 @@
             <version>${neanderthal-mkl-version}</version>
             <classifier>amd64-Linux-gpp</classifier>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>uncomplicate</groupId>
             <artifactId>neanderthal-mkl</artifactId>
             <version>${neanderthal-mkl-version}</version>
@@ -75,7 +75,7 @@
             <artifactId>neanderthal-mkl</artifactId>
             <version>${neanderthal-mkl-version}</version>
             <classifier>amd64-Windows-msvc</classifier>
-        </dependency>
+        </dependency> -->
     </dependencies>
 
     <build>

@@ -1045,12 +1045,12 @@ JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_CBLAS_sspr2
  jfloat alpha,
  jobject X, jint offsetX, jint incX,
  jobject Y, jint offsetY, jint incY,
- jobject Ap) {
+ jobject Ap, jint offsetAp) {
 
     float *cX = (float *) (*env)->GetDirectBufferAddress(env, X);
     float *cY = (float *) (*env)->GetDirectBufferAddress(env, Y);
     float *cAp = (float *) (*env)->GetDirectBufferAddress(env, Ap);
-    cblas_sspr2(Order, Uplo, N, alpha, cX + offsetX, incX, cY + offsetY, incY, cAp);
+    cblas_sspr2(Order, Uplo, N, alpha, cX + offsetX, incX, cY + offsetY, incY, cAp + offsetAp);
 };
 
 JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_CBLAS_dspr2
@@ -1060,12 +1060,12 @@ JNIEXPORT void JNICALL Java_uncomplicate_neanderthal_internal_host_CBLAS_dspr2
  jdouble alpha,
  jobject X, jint offsetX, jint incX,
  jobject Y, jint offsetY, jint incY,
- jobject Ap) {
+ jobject Ap, jint offsetAp) {
 
     double *cX = (double *) (*env)->GetDirectBufferAddress(env, X);
     double *cY = (double *) (*env)->GetDirectBufferAddress(env, Y);
     double *cAp = (double *) (*env)->GetDirectBufferAddress(env, Ap);
-    cblas_dspr2(Order, Uplo, N, alpha, cX + offsetX, incX, cY + offsetY, incY, cAp);
+    cblas_dspr2(Order, Uplo, N, alpha, cX + offsetX, incX, cY + offsetY, incY, cAp + offsetAp);
 };
 
 /*

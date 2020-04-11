@@ -509,14 +509,14 @@ public class CBLAS {
                                     float alpha,
                                     Buffer X, int offsetX, int incX,
                                     Buffer Y, int offsetY, int incY,
-                                    Buffer Ap);
+                                    Buffer Ap, int offsetAp);
 
     public static native void dspr2(int Order, int Uplo,
                                     int N,
                                     double alpha,
                                     Buffer X, int offsetX, int incX,
                                     Buffer Y, int offsetY, int incY,
-                                    Buffer Ap);
+                                    Buffer Ap, int offsetAp);
 
     /*
      * ======================================================
