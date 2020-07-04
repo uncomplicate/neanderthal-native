@@ -136,14 +136,26 @@ public class MKL {
     public static native void vsExp (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
     public static native void vdExp (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
 
+    public static native void vsExp2 (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
+    public static native void vdExp2 (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
+
+    public static native void vsExp10 (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
+    public static native void vdExp10 (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
+
     public static native void vsExpm1 (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
     public static native void vdExpm1 (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
 
     public static native void vsLn (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
     public static native void vdLn (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
 
+    public static native void vsLog2 (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
+    public static native void vdLog2 (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
+
     public static native void vsLog10 (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
     public static native void vdLog10 (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
+
+    public static native void vsLog1p (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
+    public static native void vdLog1p (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
 
     public static native void vsCos (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
     public static native void vdCos (int N, Buffer A, int offsetA, Buffer Y, int offsetY);
