@@ -4,13 +4,13 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <neanderthal-mkl-version>0.33.0-SNAPSHOT</neanderthal-mkl-version>
+        <neanderthal-mkl-version>0.46.0-SNAPSHOT</neanderthal-mkl-version>
         <skipTests>true</skipTests>
     </properties>
 
     <groupId>uncomplicate</groupId>
     <artifactId>neanderthal-native</artifactId>
-    <version>0.33.0-SNAPSHOT</version>
+    <version>0.46.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Neanderthal JNI BLAS/LAPACK Bindings</name>
@@ -90,19 +90,19 @@
                 </configuration>
             </plugin>
 
-             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--  <plugin> -->
+            <!--     <groupId>org.apache.maven.plugins</groupId> -->
+            <!--     <artifactId>maven-gpg-plugin</artifactId> -->
+            <!--     <executions> -->
+            <!--         <execution> -->
+            <!--             <id>sign-artifacts</id> -->
+            <!--             <phase>verify</phase> -->
+            <!--             <goals> -->
+            <!--                 <goal>sign</goal> -->
+            <!--             </goals> -->
+            <!--         </execution> -->
+            <!--     </executions> -->
+            <!-- </plugin> -->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

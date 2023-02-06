@@ -4,7 +4,7 @@
   <groupId>uncomplicate</groupId>
   <artifactId>neanderthal-native</artifactId>
   <name>Neanderthal JNI BLAS/LAPACK Bindings</name>
-  <version>0.33.0-SNAPSHOT</version>
+  <version>0.46.0-SNAPSHOT</version>
   <description>Uberjar of JNI Bindings for native BLAS and LAPACK library.</description>
   <url>https://github.com/uncomplicate/neanderthal-native</url>
   <issueManagement>
@@ -39,18 +39,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <artifactId>maven-shade-plugin</artifactId>
         <executions>
           <execution>
@@ -76,8 +64,7 @@
   </distributionManagement>
   <properties>
     <skipTests>true</skipTests>
-    <neanderthal-mkl-version>0.33.0-SNAPSHOT</neanderthal-mkl-version>
+    <neanderthal-mkl-version>0.46.0-SNAPSHOT</neanderthal-mkl-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>
-
