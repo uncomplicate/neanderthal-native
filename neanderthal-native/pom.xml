@@ -4,7 +4,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <neanderthal-mkl-version>0.46.0-SNAPSHOT</neanderthal-mkl-version>
+        <neanderthal-mkl-version>0.46.0</neanderthal-mkl-version>
         <skipTests>true</skipTests>
     </properties>
 
@@ -64,7 +64,7 @@
             <version>${neanderthal-mkl-version}</version>
             <classifier>amd64-Linux-gpp</classifier>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>uncomplicate</groupId>
             <artifactId>neanderthal-mkl</artifactId>
             <version>${neanderthal-mkl-version}</version>
@@ -75,7 +75,7 @@
             <artifactId>neanderthal-mkl</artifactId>
             <version>${neanderthal-mkl-version}</version>
             <classifier>amd64-Windows-msvc</classifier>
-        </dependency>-->
+        </dependency>
     </dependencies>
 
     <build>
