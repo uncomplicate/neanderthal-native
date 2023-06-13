@@ -67,6 +67,38 @@
 
     <profiles>
         <profile>
+            <id>java-9</id>
+            <activation>
+                <jdk>[9,)</jdk>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <artifactId>maven-compiler-plugin</artifactId>
+                            <configuration>
+                                <compilerArgs>
+                                    <arg>-h</arg>
+                                    <arg>${project.build.directory}/nar/javah-include</arg>
+                                </compilerArgs>
+                            </configuration>
+                        </plugin>
+                        <!-- pending javah><skip -->
+                        <plugin>
+                            <groupId>com.github.maven-nar</groupId>
+                            <artifactId>nar-maven-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>default-nar-javah</id>
+                                    <phase>none</phase>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+        <profile>
             <id>Linux</id>
             <activation>
                 <os>
